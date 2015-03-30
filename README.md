@@ -15,4 +15,10 @@ Metasequoia4 (.mqo, .mqx) to .fbx
  - スムーズ、ミラーは出力されません。先にフリーズしておいてください
  - テクスチャ画像は出力されません。
  - マテリアルも結構いい加減な出力なのでテクスチャと共に手動で設定してください
- - メタセコ３方式に対応していません
+ - メタセコ３で出力した.mqoには対応していません
+ 
+謝辞:
+ - [FBX SDK](http://www.autodesk.com/products/fbx/overview)
+ - [re2c](http://re2c.org/)
+ - [lemon parser](http://www.hwaci.com/sw/lemon/)
+ - [tinyxml2](https://github.com/leethomason/tinyxml2)
