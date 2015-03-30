@@ -1,0 +1,1828 @@
+State 0:
+          program ::= * expr3
+          expr3 ::= * TAG_MetasequoiaDocument TAG_FormatTextVer11 expr TAG_Eof
+
+       TAG_MetasequoiaDocument shift  168
+                       program accept
+                         expr3 shift  169
+
+State 1:
+          intval ::= * INTVAL
+          vertexattrexpr2 ::= TAG_color BR1 colorexpr * BR2
+          colorexpr ::= colorexpr * colorexpr2
+          colorexpr2 ::= * intval intval
+
+                           BR2 shift  183
+                        INTVAL shift  239
+                        intval shift  62
+                    colorexpr2 shift  182
+
+State 2:
+          intval ::= * INTVAL
+          vertexattrexpr2 ::= TAG_weit BR1 weitexpr * BR2
+          weitexpr ::= weitexpr * weitexpr2
+          weitexpr2 ::= * intval dblval
+
+                           BR2 shift  186
+                        INTVAL shift  239
+                        intval shift  11
+                     weitexpr2 shift  185
+
+State 3:
+          expr ::= expr TAG_Material intval BR1 matexpr * BR2
+          strval ::= * STRVAL
+          matexpr ::= matexpr * matexpr2
+          matexpr2 ::= * strval matparamexpr2
+
+                           BR2 shift  242
+                        STRVAL shift  241
+                        strval shift  101
+                      matexpr2 shift  240
+
+State 4:
+          objexpr ::= objexpr TAG_vertexattr BR1 vertexattrexpr * BR2
+          vertexattrexpr ::= vertexattrexpr * vertexattrexpr2
+          vertexattrexpr2 ::= * TAG_uid BR1 uidexpr BR2
+          vertexattrexpr2 ::= * TAG_weit BR1 weitexpr BR2
+          vertexattrexpr2 ::= * TAG_color BR1 colorexpr BR2
+
+                           BR2 shift  190
+                       TAG_uid shift  119
+                     TAG_color shift  117
+                      TAG_weit shift  118
+               vertexattrexpr2 shift  189
+
+State 5:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          faceattrexpr ::= faceattrexpr TAG_CRS BR3 dblarr * BR4
+          dblarr ::= dblarr * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                           BR4 shift  171
+                        dblval shift  174
+
+State 6:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          faceattrexpr ::= faceattrexpr TAG_UV BR3 dblarr * BR4
+          dblarr ::= dblarr * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                           BR4 shift  175
+                        dblval shift  174
+
+State 7:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_vertex intval BR1 vertexexpr * BR2
+          vertexexpr ::= vertexexpr * dblval dblval dblval
+
+                           BR2 shift  192
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  14
+
+State 8:
+          intval ::= * INTVAL
+          faceattrexpr ::= faceattrexpr TAG_COL BR3 colorrefarr * BR4
+          colorrefarr ::= colorrefarr * intval
+
+                        INTVAL shift  239
+                           BR4 shift  173
+                        intval shift  172
+
+State 9:
+          intval ::= * INTVAL
+          faceattrexpr ::= faceattrexpr TAG_V BR3 uintarr * BR4
+          uintarr ::= uintarr * intval
+
+                        INTVAL shift  239
+                           BR4 shift  179
+                        intval shift  178
+
+State 10:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_face intval BR1 faceexpr * BR2
+          faceexpr ::= faceexpr * intval faceattrexpr
+
+                           BR2 shift  180
+                        INTVAL shift  239
+                        intval shift  93
+
+State 11:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          weitexpr2 ::= intval * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  184
+
+State 12:
+          intval ::= * INTVAL
+          vertexattrexpr2 ::= TAG_uid BR1 uidexpr * BR2
+          uidexpr ::= uidexpr * intval
+
+                           BR2 shift  188
+                        INTVAL shift  239
+                        intval shift  187
+
+State 13:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          vertexexpr ::= vertexexpr dblval dblval * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  191
+
+State 14:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          vertexexpr ::= vertexexpr dblval * dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  13
+
+State 15:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_mirror_dis * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  196
+
+State 16:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_color dblval dblval * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  200
+
+State 17:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_color dblval * dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  16
+
+State 18:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_color * dblval dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  17
+
+State 19:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_facet * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  201
+
+State 20:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_translation dblval dblval * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  208
+
+State 21:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_translation dblval * dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  20
+
+State 22:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_translation * dblval dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  21
+
+State 23:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_rotation dblval dblval * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  209
+
+State 24:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_rotation dblval * dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  23
+
+State 25:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_rotation * dblval dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  24
+
+State 26:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_scale dblval dblval * dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  210
+
+State 27:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_scale dblval * dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  26
+
+State 28:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          objexpr ::= objexpr TAG_scale * dblval dblval dblval
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  27
+
+State 29:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_angle BR3 dblval dblval * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  123
+
+State 30:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_angle BR3 dblval * dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  29
+
+State 31:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_angle BR3 * dblval dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  30
+
+State 32:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_scale BR3 dblval dblval * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  125
+
+State 33:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_scale BR3 dblval * dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  32
+
+State 34:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_scale BR3 * dblval dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  33
+
+State 35:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_pos BR3 dblval dblval * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  127
+
+State 36:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_pos BR3 dblval * dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  35
+
+State 37:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_pos BR3 * dblval dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  36
+
+State 38:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_refract BR3 * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  137
+
+State 39:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_reflect BR3 * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  139
+
+State 40:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_power BR3 * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  141
+
+State 41:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_spc_col BR3 dblval dblval * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  143
+
+State 42:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_spc_col BR3 dblval * dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  41
+
+State 43:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_spc_col BR3 * dblval dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  42
+
+State 44:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_emi_col BR3 dblval dblval * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  145
+
+State 45:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_emi_col BR3 dblval * dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  44
+
+State 46:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_emi_col BR3 * dblval dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  45
+
+State 47:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_amb_col BR3 dblval dblval * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  147
+
+State 48:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_amb_col BR3 dblval * dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  47
+
+State 49:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_amb_col BR3 * dblval dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  48
+
+State 50:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_spc BR3 * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  149
+
+State 51:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_emi BR3 * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  151
+
+State 52:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_amb BR3 * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  153
+
+State 53:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_dif BR3 * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  155
+
+State 54:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_col BR3 dblval dblval dblval * dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  157
+
+State 55:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_col BR3 dblval dblval * dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  54
+
+State 56:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_col BR3 dblval * dblval dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  55
+
+State 57:
+          dblval ::= * DBLVAL
+          dblval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_col BR3 * dblval dblval dblval dblval BR4
+
+                        INTVAL shift  233
+                        DBLVAL shift  234
+                        dblval shift  56
+
+State 58:
+          expr ::= expr TAG_IncludeXml * strval
+          strval ::= * STRVAL
+
+                        STRVAL shift  241
+                        strval shift  170
+
+State 59:
+          intval ::= * INTVAL
+          faceattrexpr ::= faceattrexpr TAG_UID BR3 * intval BR4
+
+                        INTVAL shift  239
+                        intval shift  111
+
+State 60:
+          intval ::= * INTVAL
+          faceattrexpr ::= faceattrexpr TAG_M BR3 * intval BR4
+
+                        INTVAL shift  239
+                        intval shift  113
+
+State 61:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_face * intval BR1 faceexpr BR2
+
+                        INTVAL shift  239
+                        intval shift  116
+
+State 62:
+          intval ::= * INTVAL
+          colorexpr2 ::= intval * intval
+
+                        INTVAL shift  239
+                        intval shift  181
+
+State 63:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_vertex * intval BR1 vertexexpr BR2
+
+                        INTVAL shift  239
+                        intval shift  121
+
+State 64:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_lathe_seg * intval
+
+                        INTVAL shift  239
+                        intval shift  193
+
+State 65:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_lathe_axis * intval
+
+                        INTVAL shift  239
+                        intval shift  194
+
+State 66:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_lathe * intval
+
+                        INTVAL shift  239
+                        intval shift  195
+
+State 67:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_mirror_axis * intval
+
+                        INTVAL shift  239
+                        intval shift  197
+
+State 68:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_mirror * intval
+
+                        INTVAL shift  239
+                        intval shift  198
+
+State 69:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_color_type * intval
+
+                        INTVAL shift  239
+                        intval shift  199
+
+State 70:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_shading * intval
+
+                        INTVAL shift  239
+                        intval shift  202
+
+State 71:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_locking * intval
+
+                        INTVAL shift  239
+                        intval shift  203
+
+State 72:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_visible * intval
+
+                        INTVAL shift  239
+                        intval shift  204
+
+State 73:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_segment * intval
+
+                        INTVAL shift  239
+                        intval shift  205
+
+State 74:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_patchtri * intval
+
+                        INTVAL shift  239
+                        intval shift  206
+
+State 75:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_patch * intval
+
+                        INTVAL shift  239
+                        intval shift  207
+
+State 76:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_folding * intval
+
+                        INTVAL shift  239
+                        intval shift  211
+
+State 77:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_depth * intval
+
+                        INTVAL shift  239
+                        intval shift  212
+
+State 78:
+          intval ::= * INTVAL
+          objexpr ::= objexpr TAG_uid * intval
+
+                        INTVAL shift  239
+                        intval shift  213
+
+State 79:
+          expr ::= expr TAG_Object * strval BR1 objexpr BR2
+          strval ::= * STRVAL
+
+                        STRVAL shift  241
+                        strval shift  122
+
+State 80:
+          intval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_proj_type BR3 * intval BR4
+
+                        INTVAL shift  239
+                        intval shift  129
+
+State 81:
+          strval ::= * STRVAL
+          matparamexpr2 ::= matparamexpr2 TAG_bump BR3 * strval BR4
+
+                        STRVAL shift  241
+                        strval shift  131
+
+State 82:
+          strval ::= * STRVAL
+          matparamexpr2 ::= matparamexpr2 TAG_aplane BR3 * strval BR4
+
+                        STRVAL shift  241
+                        strval shift  133
+
+State 83:
+          strval ::= * STRVAL
+          matparamexpr2 ::= matparamexpr2 TAG_tex BR3 * strval BR4
+
+                        STRVAL shift  241
+                        strval shift  135
+
+State 84:
+          intval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_dbls BR3 * intval BR4
+
+                        INTVAL shift  239
+                        intval shift  159
+
+State 85:
+          intval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_vcol BR3 * intval BR4
+
+                        INTVAL shift  239
+                        intval shift  161
+
+State 86:
+          intval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_uid BR3 * intval BR4
+
+                        INTVAL shift  239
+                        intval shift  163
+
+State 87:
+          intval ::= * INTVAL
+          matparamexpr2 ::= matparamexpr2 TAG_shader BR3 * intval BR4
+
+                        INTVAL shift  239
+                        intval shift  165
+
+State 88:
+          expr ::= expr TAG_Material * intval BR1 matexpr BR2
+          intval ::= * INTVAL
+
+                        INTVAL shift  239
+                        intval shift  167
+
+State 89:
+          faceattrexpr ::= faceattrexpr TAG_CRS BR3 * dblarr BR4
+          dblarr ::= * dblarr dblval
+     (90) dblarr ::= *
+
+                        dblarr shift  5
+                     {default} reduce 90
+
+State 90:
+          faceattrexpr ::= faceattrexpr TAG_COL BR3 * colorrefarr BR4
+          colorrefarr ::= * colorrefarr intval
+     (88) colorrefarr ::= *
+
+                   colorrefarr shift  8
+                     {default} reduce 88
+
+State 91:
+          faceattrexpr ::= faceattrexpr TAG_UV BR3 * dblarr BR4
+          dblarr ::= * dblarr dblval
+     (90) dblarr ::= *
+
+                        dblarr shift  6
+                     {default} reduce 90
+
+State 92:
+          faceattrexpr ::= faceattrexpr TAG_V BR3 * uintarr BR4
+          uintarr ::= * uintarr intval
+     (86) uintarr ::= *
+
+                       uintarr shift  9
+                     {default} reduce 86
+
+State 93:
+          faceexpr ::= faceexpr intval * faceattrexpr
+          faceattrexpr ::= * faceattrexpr TAG_V BR3 uintarr BR4
+          faceattrexpr ::= * faceattrexpr TAG_M BR3 intval BR4
+          faceattrexpr ::= * faceattrexpr TAG_UID BR3 intval BR4
+          faceattrexpr ::= * faceattrexpr TAG_UV BR3 dblarr BR4
+          faceattrexpr ::= * faceattrexpr TAG_COL BR3 colorrefarr BR4
+          faceattrexpr ::= * faceattrexpr TAG_CRS BR3 dblarr BR4
+     (84) faceattrexpr ::= *
+
+                  faceattrexpr shift  106
+                     {default} reduce 84
+
+State 94:
+          objexpr ::= objexpr TAG_face intval BR1 * faceexpr BR2
+          faceexpr ::= * faceexpr intval faceattrexpr
+     (77) faceexpr ::= *
+
+                      faceexpr shift  10
+                     {default} reduce 77
+
+State 95:
+          vertexattrexpr2 ::= TAG_color BR1 * colorexpr BR2
+          colorexpr ::= * colorexpr colorexpr2
+     (74) colorexpr ::= *
+
+                     colorexpr shift  1
+                     {default} reduce 74
+
+State 96:
+          vertexattrexpr2 ::= TAG_weit BR1 * weitexpr BR2
+          weitexpr ::= * weitexpr weitexpr2
+     (71) weitexpr ::= *
+
+                      weitexpr shift  2
+                     {default} reduce 71
+
+State 97:
+          vertexattrexpr2 ::= TAG_uid BR1 * uidexpr BR2
+          uidexpr ::= * uidexpr intval
+     (69) uidexpr ::= *
+
+                       uidexpr shift  12
+                     {default} reduce 69
+
+State 98:
+          objexpr ::= objexpr TAG_vertexattr BR1 * vertexattrexpr BR2
+          vertexattrexpr ::= * vertexattrexpr vertexattrexpr2
+     (64) vertexattrexpr ::= *
+
+                vertexattrexpr shift  4
+                     {default} reduce 64
+
+State 99:
+          objexpr ::= objexpr TAG_vertex intval BR1 * vertexexpr BR2
+          vertexexpr ::= * vertexexpr dblval dblval dblval
+     (62) vertexexpr ::= *
+
+                    vertexexpr shift  7
+                     {default} reduce 62
+
+State 100:
+          expr ::= expr TAG_Object strval BR1 * objexpr BR2
+          objexpr ::= * objexpr TAG_uid intval
+          objexpr ::= * objexpr TAG_depth intval
+          objexpr ::= * objexpr TAG_folding intval
+          objexpr ::= * objexpr TAG_scale dblval dblval dblval
+          objexpr ::= * objexpr TAG_rotation dblval dblval dblval
+          objexpr ::= * objexpr TAG_translation dblval dblval dblval
+          objexpr ::= * objexpr TAG_patch intval
+          objexpr ::= * objexpr TAG_patchtri intval
+          objexpr ::= * objexpr TAG_segment intval
+          objexpr ::= * objexpr TAG_visible intval
+          objexpr ::= * objexpr TAG_locking intval
+          objexpr ::= * objexpr TAG_shading intval
+          objexpr ::= * objexpr TAG_facet dblval
+          objexpr ::= * objexpr TAG_color dblval dblval dblval
+          objexpr ::= * objexpr TAG_color_type intval
+          objexpr ::= * objexpr TAG_mirror intval
+          objexpr ::= * objexpr TAG_mirror_axis intval
+          objexpr ::= * objexpr TAG_mirror_dis dblval
+          objexpr ::= * objexpr TAG_lathe intval
+          objexpr ::= * objexpr TAG_lathe_axis intval
+          objexpr ::= * objexpr TAG_lathe_seg intval
+          objexpr ::= * objexpr TAG_vertex intval BR1 vertexexpr BR2
+          objexpr ::= * objexpr TAG_vertexattr BR1 vertexattrexpr BR2
+          objexpr ::= * objexpr TAG_face intval BR1 faceexpr BR2
+     (60) objexpr ::= *
+
+                       objexpr shift  104
+                     {default} reduce 60
+
+State 101:
+          matexpr2 ::= strval * matparamexpr2
+          matparamexpr2 ::= * matparamexpr2 TAG_shader BR3 intval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_uid BR3 intval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_vcol BR3 intval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_dbls BR3 intval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_col BR3 dblval dblval dblval dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_dif BR3 dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_amb BR3 dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_emi BR3 dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_spc BR3 dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_amb_col BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_emi_col BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_spc_col BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_power BR3 dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_reflect BR3 dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_refract BR3 dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_tex BR3 strval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_aplane BR3 strval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_bump BR3 strval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_proj_type BR3 intval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_proj_pos BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_proj_scale BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= * matparamexpr2 TAG_proj_angle BR3 dblval dblval dblval BR4
+     (35) matparamexpr2 ::= *
+
+                 matparamexpr2 shift  105
+                     {default} reduce 35
+
+State 102:
+          expr ::= expr TAG_Material intval BR1 * matexpr BR2
+          matexpr ::= * matexpr matexpr2
+     (11) matexpr ::= *
+
+                       matexpr shift  3
+                     {default} reduce 11
+
+State 103:
+          expr3 ::= TAG_MetasequoiaDocument TAG_FormatTextVer11 * expr TAG_Eof
+          expr ::= * expr TAG_Material intval BR1 matexpr BR2
+          expr ::= * expr TAG_Object strval BR1 objexpr BR2
+          expr ::= * expr TAG_IncludeXml strval
+      (5) expr ::= *
+
+                          expr shift  107
+                     {default} reduce 5
+
+State 104:
+          expr ::= expr TAG_Object strval BR1 objexpr * BR2
+          objexpr ::= objexpr * TAG_uid intval
+          objexpr ::= objexpr * TAG_depth intval
+          objexpr ::= objexpr * TAG_folding intval
+          objexpr ::= objexpr * TAG_scale dblval dblval dblval
+          objexpr ::= objexpr * TAG_rotation dblval dblval dblval
+          objexpr ::= objexpr * TAG_translation dblval dblval dblval
+          objexpr ::= objexpr * TAG_patch intval
+          objexpr ::= objexpr * TAG_patchtri intval
+          objexpr ::= objexpr * TAG_segment intval
+          objexpr ::= objexpr * TAG_visible intval
+          objexpr ::= objexpr * TAG_locking intval
+          objexpr ::= objexpr * TAG_shading intval
+          objexpr ::= objexpr * TAG_facet dblval
+          objexpr ::= objexpr * TAG_color dblval dblval dblval
+          objexpr ::= objexpr * TAG_color_type intval
+          objexpr ::= objexpr * TAG_mirror intval
+          objexpr ::= objexpr * TAG_mirror_axis intval
+          objexpr ::= objexpr * TAG_mirror_dis dblval
+          objexpr ::= objexpr * TAG_lathe intval
+          objexpr ::= objexpr * TAG_lathe_axis intval
+          objexpr ::= objexpr * TAG_lathe_seg intval
+          objexpr ::= objexpr * TAG_vertex intval BR1 vertexexpr BR2
+          objexpr ::= objexpr * TAG_vertexattr BR1 vertexattrexpr BR2
+          objexpr ::= objexpr * TAG_face intval BR1 faceexpr BR2
+
+                           BR2 shift  214
+                       TAG_uid shift  78
+                     TAG_depth shift  77
+                   TAG_folding shift  76
+                     TAG_scale shift  28
+                  TAG_rotation shift  25
+               TAG_translation shift  22
+                     TAG_patch shift  75
+                  TAG_patchtri shift  74
+                   TAG_segment shift  73
+                   TAG_visible shift  72
+                   TAG_locking shift  71
+                   TAG_shading shift  70
+                     TAG_facet shift  19
+                     TAG_color shift  18
+                TAG_color_type shift  69
+                    TAG_mirror shift  68
+               TAG_mirror_axis shift  67
+                TAG_mirror_dis shift  15
+                     TAG_lathe shift  66
+                TAG_lathe_axis shift  65
+                 TAG_lathe_seg shift  64
+                    TAG_vertex shift  63
+                TAG_vertexattr shift  120
+                      TAG_face shift  61
+
+State 105:
+     (12) matexpr2 ::= strval matparamexpr2 *
+          matparamexpr2 ::= matparamexpr2 * TAG_shader BR3 intval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_uid BR3 intval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_vcol BR3 intval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_dbls BR3 intval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_col BR3 dblval dblval dblval dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_dif BR3 dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_amb BR3 dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_emi BR3 dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_spc BR3 dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_amb_col BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_emi_col BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_spc_col BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_power BR3 dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_reflect BR3 dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_refract BR3 dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_tex BR3 strval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_aplane BR3 strval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_bump BR3 strval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_proj_type BR3 intval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_proj_pos BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_proj_scale BR3 dblval dblval dblval BR4
+          matparamexpr2 ::= matparamexpr2 * TAG_proj_angle BR3 dblval dblval dblval BR4
+
+                    TAG_shader shift  166
+                       TAG_uid shift  164
+                      TAG_vcol shift  162
+                      TAG_dbls shift  160
+                       TAG_col shift  158
+                       TAG_dif shift  156
+                       TAG_amb shift  154
+                       TAG_emi shift  152
+                       TAG_spc shift  150
+                   TAG_amb_col shift  148
+                   TAG_emi_col shift  146
+                   TAG_spc_col shift  144
+                     TAG_power shift  142
+                   TAG_reflect shift  140
+                   TAG_refract shift  138
+                       TAG_tex shift  136
+                    TAG_aplane shift  134
+                      TAG_bump shift  132
+                 TAG_proj_type shift  130
+                  TAG_proj_pos shift  128
+                TAG_proj_scale shift  126
+                TAG_proj_angle shift  124
+                     {default} reduce 12
+
+State 106:
+     (76) faceexpr ::= faceexpr intval faceattrexpr *
+          faceattrexpr ::= faceattrexpr * TAG_V BR3 uintarr BR4
+          faceattrexpr ::= faceattrexpr * TAG_M BR3 intval BR4
+          faceattrexpr ::= faceattrexpr * TAG_UID BR3 intval BR4
+          faceattrexpr ::= faceattrexpr * TAG_UV BR3 dblarr BR4
+          faceattrexpr ::= faceattrexpr * TAG_COL BR3 colorrefarr BR4
+          faceattrexpr ::= faceattrexpr * TAG_CRS BR3 dblarr BR4
+
+                         TAG_V shift  115
+                         TAG_M shift  114
+                       TAG_UID shift  112
+                        TAG_UV shift  110
+                       TAG_COL shift  109
+                       TAG_CRS shift  108
+                     {default} reduce 76
+
+State 107:
+          expr3 ::= TAG_MetasequoiaDocument TAG_FormatTextVer11 expr * TAG_Eof
+          expr ::= expr * TAG_Material intval BR1 matexpr BR2
+          expr ::= expr * TAG_Object strval BR1 objexpr BR2
+          expr ::= expr * TAG_IncludeXml strval
+
+                       TAG_Eof shift  243
+                  TAG_Material shift  88
+                    TAG_Object shift  79
+                TAG_IncludeXml shift  58
+
+State 108:
+          faceattrexpr ::= faceattrexpr TAG_CRS * BR3 dblarr BR4
+
+                           BR3 shift  89
+
+State 109:
+          faceattrexpr ::= faceattrexpr TAG_COL * BR3 colorrefarr BR4
+
+                           BR3 shift  90
+
+State 110:
+          faceattrexpr ::= faceattrexpr TAG_UV * BR3 dblarr BR4
+
+                           BR3 shift  91
+
+State 111:
+          faceattrexpr ::= faceattrexpr TAG_UID BR3 intval * BR4
+
+                           BR4 shift  176
+
+State 112:
+          faceattrexpr ::= faceattrexpr TAG_UID * BR3 intval BR4
+
+                           BR3 shift  59
+
+State 113:
+          faceattrexpr ::= faceattrexpr TAG_M BR3 intval * BR4
+
+                           BR4 shift  177
+
+State 114:
+          faceattrexpr ::= faceattrexpr TAG_M * BR3 intval BR4
+
+                           BR3 shift  60
+
+State 115:
+          faceattrexpr ::= faceattrexpr TAG_V * BR3 uintarr BR4
+
+                           BR3 shift  92
+
+State 116:
+          objexpr ::= objexpr TAG_face intval * BR1 faceexpr BR2
+
+                           BR1 shift  94
+
+State 117:
+          vertexattrexpr2 ::= TAG_color * BR1 colorexpr BR2
+
+                           BR1 shift  95
+
+State 118:
+          vertexattrexpr2 ::= TAG_weit * BR1 weitexpr BR2
+
+                           BR1 shift  96
+
+State 119:
+          vertexattrexpr2 ::= TAG_uid * BR1 uidexpr BR2
+
+                           BR1 shift  97
+
+State 120:
+          objexpr ::= objexpr TAG_vertexattr * BR1 vertexattrexpr BR2
+
+                           BR1 shift  98
+
+State 121:
+          objexpr ::= objexpr TAG_vertex intval * BR1 vertexexpr BR2
+
+                           BR1 shift  99
+
+State 122:
+          expr ::= expr TAG_Object strval * BR1 objexpr BR2
+
+                           BR1 shift  100
+
+State 123:
+          matparamexpr2 ::= matparamexpr2 TAG_proj_angle BR3 dblval dblval dblval * BR4
+
+                           BR4 shift  215
+
+State 124:
+          matparamexpr2 ::= matparamexpr2 TAG_proj_angle * BR3 dblval dblval dblval BR4
+
+                           BR3 shift  31
+
+State 125:
+          matparamexpr2 ::= matparamexpr2 TAG_proj_scale BR3 dblval dblval dblval * BR4
+
+                           BR4 shift  216
+
+State 126:
+          matparamexpr2 ::= matparamexpr2 TAG_proj_scale * BR3 dblval dblval dblval BR4
+
+                           BR3 shift  34
+
+State 127:
+          matparamexpr2 ::= matparamexpr2 TAG_proj_pos BR3 dblval dblval dblval * BR4
+
+                           BR4 shift  217
+
+State 128:
+          matparamexpr2 ::= matparamexpr2 TAG_proj_pos * BR3 dblval dblval dblval BR4
+
+                           BR3 shift  37
+
+State 129:
+          matparamexpr2 ::= matparamexpr2 TAG_proj_type BR3 intval * BR4
+
+                           BR4 shift  218
+
+State 130:
+          matparamexpr2 ::= matparamexpr2 TAG_proj_type * BR3 intval BR4
+
+                           BR3 shift  80
+
+State 131:
+          matparamexpr2 ::= matparamexpr2 TAG_bump BR3 strval * BR4
+
+                           BR4 shift  219
+
+State 132:
+          matparamexpr2 ::= matparamexpr2 TAG_bump * BR3 strval BR4
+
+                           BR3 shift  81
+
+State 133:
+          matparamexpr2 ::= matparamexpr2 TAG_aplane BR3 strval * BR4
+
+                           BR4 shift  220
+
+State 134:
+          matparamexpr2 ::= matparamexpr2 TAG_aplane * BR3 strval BR4
+
+                           BR3 shift  82
+
+State 135:
+          matparamexpr2 ::= matparamexpr2 TAG_tex BR3 strval * BR4
+
+                           BR4 shift  221
+
+State 136:
+          matparamexpr2 ::= matparamexpr2 TAG_tex * BR3 strval BR4
+
+                           BR3 shift  83
+
+State 137:
+          matparamexpr2 ::= matparamexpr2 TAG_refract BR3 dblval * BR4
+
+                           BR4 shift  222
+
+State 138:
+          matparamexpr2 ::= matparamexpr2 TAG_refract * BR3 dblval BR4
+
+                           BR3 shift  38
+
+State 139:
+          matparamexpr2 ::= matparamexpr2 TAG_reflect BR3 dblval * BR4
+
+                           BR4 shift  223
+
+State 140:
+          matparamexpr2 ::= matparamexpr2 TAG_reflect * BR3 dblval BR4
+
+                           BR3 shift  39
+
+State 141:
+          matparamexpr2 ::= matparamexpr2 TAG_power BR3 dblval * BR4
+
+                           BR4 shift  224
+
+State 142:
+          matparamexpr2 ::= matparamexpr2 TAG_power * BR3 dblval BR4
+
+                           BR3 shift  40
+
+State 143:
+          matparamexpr2 ::= matparamexpr2 TAG_spc_col BR3 dblval dblval dblval * BR4
+
+                           BR4 shift  225
+
+State 144:
+          matparamexpr2 ::= matparamexpr2 TAG_spc_col * BR3 dblval dblval dblval BR4
+
+                           BR3 shift  43
+
+State 145:
+          matparamexpr2 ::= matparamexpr2 TAG_emi_col BR3 dblval dblval dblval * BR4
+
+                           BR4 shift  226
+
+State 146:
+          matparamexpr2 ::= matparamexpr2 TAG_emi_col * BR3 dblval dblval dblval BR4
+
+                           BR3 shift  46
+
+State 147:
+          matparamexpr2 ::= matparamexpr2 TAG_amb_col BR3 dblval dblval dblval * BR4
+
+                           BR4 shift  227
+
+State 148:
+          matparamexpr2 ::= matparamexpr2 TAG_amb_col * BR3 dblval dblval dblval BR4
+
+                           BR3 shift  49
+
+State 149:
+          matparamexpr2 ::= matparamexpr2 TAG_spc BR3 dblval * BR4
+
+                           BR4 shift  228
+
+State 150:
+          matparamexpr2 ::= matparamexpr2 TAG_spc * BR3 dblval BR4
+
+                           BR3 shift  50
+
+State 151:
+          matparamexpr2 ::= matparamexpr2 TAG_emi BR3 dblval * BR4
+
+                           BR4 shift  229
+
+State 152:
+          matparamexpr2 ::= matparamexpr2 TAG_emi * BR3 dblval BR4
+
+                           BR3 shift  51
+
+State 153:
+          matparamexpr2 ::= matparamexpr2 TAG_amb BR3 dblval * BR4
+
+                           BR4 shift  230
+
+State 154:
+          matparamexpr2 ::= matparamexpr2 TAG_amb * BR3 dblval BR4
+
+                           BR3 shift  52
+
+State 155:
+          matparamexpr2 ::= matparamexpr2 TAG_dif BR3 dblval * BR4
+
+                           BR4 shift  231
+
+State 156:
+          matparamexpr2 ::= matparamexpr2 TAG_dif * BR3 dblval BR4
+
+                           BR3 shift  53
+
+State 157:
+          matparamexpr2 ::= matparamexpr2 TAG_col BR3 dblval dblval dblval dblval * BR4
+
+                           BR4 shift  232
+
+State 158:
+          matparamexpr2 ::= matparamexpr2 TAG_col * BR3 dblval dblval dblval dblval BR4
+
+                           BR3 shift  57
+
+State 159:
+          matparamexpr2 ::= matparamexpr2 TAG_dbls BR3 intval * BR4
+
+                           BR4 shift  235
+
+State 160:
+          matparamexpr2 ::= matparamexpr2 TAG_dbls * BR3 intval BR4
+
+                           BR3 shift  84
+
+State 161:
+          matparamexpr2 ::= matparamexpr2 TAG_vcol BR3 intval * BR4
+
+                           BR4 shift  236
+
+State 162:
+          matparamexpr2 ::= matparamexpr2 TAG_vcol * BR3 intval BR4
+
+                           BR3 shift  85
+
+State 163:
+          matparamexpr2 ::= matparamexpr2 TAG_uid BR3 intval * BR4
+
+                           BR4 shift  237
+
+State 164:
+          matparamexpr2 ::= matparamexpr2 TAG_uid * BR3 intval BR4
+
+                           BR3 shift  86
+
+State 165:
+          matparamexpr2 ::= matparamexpr2 TAG_shader BR3 intval * BR4
+
+                           BR4 shift  238
+
+State 166:
+          matparamexpr2 ::= matparamexpr2 TAG_shader * BR3 intval BR4
+
+                           BR3 shift  87
+
+State 167:
+          expr ::= expr TAG_Material intval * BR1 matexpr BR2
+
+                           BR1 shift  102
+
+State 168:
+          expr3 ::= TAG_MetasequoiaDocument * TAG_FormatTextVer11 expr TAG_Eof
+
+           TAG_FormatTextVer11 shift  103
+
+State 169:
+      (0) program ::= expr3 *
+
+                             $ reduce 0
+
+State 170:
+      (4) expr ::= expr TAG_IncludeXml strval *
+
+                     {default} reduce 4
+
+State 171:
+     (83) faceattrexpr ::= faceattrexpr TAG_CRS BR3 dblarr BR4 *
+
+                     {default} reduce 83
+
+State 172:
+     (87) colorrefarr ::= colorrefarr intval *
+
+                     {default} reduce 87
+
+State 173:
+     (82) faceattrexpr ::= faceattrexpr TAG_COL BR3 colorrefarr BR4 *
+
+                     {default} reduce 82
+
+State 174:
+     (89) dblarr ::= dblarr dblval *
+
+                     {default} reduce 89
+
+State 175:
+     (81) faceattrexpr ::= faceattrexpr TAG_UV BR3 dblarr BR4 *
+
+                     {default} reduce 81
+
+State 176:
+     (80) faceattrexpr ::= faceattrexpr TAG_UID BR3 intval BR4 *
+
+                     {default} reduce 80
+
+State 177:
+     (79) faceattrexpr ::= faceattrexpr TAG_M BR3 intval BR4 *
+
+                     {default} reduce 79
+
+State 178:
+     (85) uintarr ::= uintarr intval *
+
+                     {default} reduce 85
+
+State 179:
+     (78) faceattrexpr ::= faceattrexpr TAG_V BR3 uintarr BR4 *
+
+                     {default} reduce 78
+
+State 180:
+     (59) objexpr ::= objexpr TAG_face intval BR1 faceexpr BR2 *
+
+                     {default} reduce 59
+
+State 181:
+     (75) colorexpr2 ::= intval intval *
+
+                     {default} reduce 75
+
+State 182:
+     (73) colorexpr ::= colorexpr colorexpr2 *
+
+                     {default} reduce 73
+
+State 183:
+     (67) vertexattrexpr2 ::= TAG_color BR1 colorexpr BR2 *
+
+                     {default} reduce 67
+
+State 184:
+     (72) weitexpr2 ::= intval dblval *
+
+                     {default} reduce 72
+
+State 185:
+     (70) weitexpr ::= weitexpr weitexpr2 *
+
+                     {default} reduce 70
+
+State 186:
+     (66) vertexattrexpr2 ::= TAG_weit BR1 weitexpr BR2 *
+
+                     {default} reduce 66
+
+State 187:
+     (68) uidexpr ::= uidexpr intval *
+
+                     {default} reduce 68
+
+State 188:
+     (65) vertexattrexpr2 ::= TAG_uid BR1 uidexpr BR2 *
+
+                     {default} reduce 65
+
+State 189:
+     (63) vertexattrexpr ::= vertexattrexpr vertexattrexpr2 *
+
+                     {default} reduce 63
+
+State 190:
+     (58) objexpr ::= objexpr TAG_vertexattr BR1 vertexattrexpr BR2 *
+
+                     {default} reduce 58
+
+State 191:
+     (61) vertexexpr ::= vertexexpr dblval dblval dblval *
+
+                     {default} reduce 61
+
+State 192:
+     (57) objexpr ::= objexpr TAG_vertex intval BR1 vertexexpr BR2 *
+
+                     {default} reduce 57
+
+State 193:
+     (56) objexpr ::= objexpr TAG_lathe_seg intval *
+
+                     {default} reduce 56
+
+State 194:
+     (55) objexpr ::= objexpr TAG_lathe_axis intval *
+
+                     {default} reduce 55
+
+State 195:
+     (54) objexpr ::= objexpr TAG_lathe intval *
+
+                     {default} reduce 54
+
+State 196:
+     (53) objexpr ::= objexpr TAG_mirror_dis dblval *
+
+                     {default} reduce 53
+
+State 197:
+     (52) objexpr ::= objexpr TAG_mirror_axis intval *
+
+                     {default} reduce 52
+
+State 198:
+     (51) objexpr ::= objexpr TAG_mirror intval *
+
+                     {default} reduce 51
+
+State 199:
+     (50) objexpr ::= objexpr TAG_color_type intval *
+
+                     {default} reduce 50
+
+State 200:
+     (49) objexpr ::= objexpr TAG_color dblval dblval dblval *
+
+                     {default} reduce 49
+
+State 201:
+     (48) objexpr ::= objexpr TAG_facet dblval *
+
+                     {default} reduce 48
+
+State 202:
+     (47) objexpr ::= objexpr TAG_shading intval *
+
+                     {default} reduce 47
+
+State 203:
+     (46) objexpr ::= objexpr TAG_locking intval *
+
+                     {default} reduce 46
+
+State 204:
+     (45) objexpr ::= objexpr TAG_visible intval *
+
+                     {default} reduce 45
+
+State 205:
+     (44) objexpr ::= objexpr TAG_segment intval *
+
+                     {default} reduce 44
+
+State 206:
+     (43) objexpr ::= objexpr TAG_patchtri intval *
+
+                     {default} reduce 43
+
+State 207:
+     (42) objexpr ::= objexpr TAG_patch intval *
+
+                     {default} reduce 42
+
+State 208:
+     (41) objexpr ::= objexpr TAG_translation dblval dblval dblval *
+
+                     {default} reduce 41
+
+State 209:
+     (40) objexpr ::= objexpr TAG_rotation dblval dblval dblval *
+
+                     {default} reduce 40
+
+State 210:
+     (39) objexpr ::= objexpr TAG_scale dblval dblval dblval *
+
+                     {default} reduce 39
+
+State 211:
+     (38) objexpr ::= objexpr TAG_folding intval *
+
+                     {default} reduce 38
+
+State 212:
+     (37) objexpr ::= objexpr TAG_depth intval *
+
+                     {default} reduce 37
+
+State 213:
+     (36) objexpr ::= objexpr TAG_uid intval *
+
+                     {default} reduce 36
+
+State 214:
+      (3) expr ::= expr TAG_Object strval BR1 objexpr BR2 *
+
+                     {default} reduce 3
+
+State 215:
+     (34) matparamexpr2 ::= matparamexpr2 TAG_proj_angle BR3 dblval dblval dblval BR4 *
+
+                     {default} reduce 34
+
+State 216:
+     (33) matparamexpr2 ::= matparamexpr2 TAG_proj_scale BR3 dblval dblval dblval BR4 *
+
+                     {default} reduce 33
+
+State 217:
+     (32) matparamexpr2 ::= matparamexpr2 TAG_proj_pos BR3 dblval dblval dblval BR4 *
+
+                     {default} reduce 32
+
+State 218:
+     (31) matparamexpr2 ::= matparamexpr2 TAG_proj_type BR3 intval BR4 *
+
+                     {default} reduce 31
+
+State 219:
+     (30) matparamexpr2 ::= matparamexpr2 TAG_bump BR3 strval BR4 *
+
+                     {default} reduce 30
+
+State 220:
+     (29) matparamexpr2 ::= matparamexpr2 TAG_aplane BR3 strval BR4 *
+
+                     {default} reduce 29
+
+State 221:
+     (28) matparamexpr2 ::= matparamexpr2 TAG_tex BR3 strval BR4 *
+
+                     {default} reduce 28
+
+State 222:
+     (27) matparamexpr2 ::= matparamexpr2 TAG_refract BR3 dblval BR4 *
+
+                     {default} reduce 27
+
+State 223:
+     (26) matparamexpr2 ::= matparamexpr2 TAG_reflect BR3 dblval BR4 *
+
+                     {default} reduce 26
+
+State 224:
+     (25) matparamexpr2 ::= matparamexpr2 TAG_power BR3 dblval BR4 *
+
+                     {default} reduce 25
+
+State 225:
+     (24) matparamexpr2 ::= matparamexpr2 TAG_spc_col BR3 dblval dblval dblval BR4 *
+
+                     {default} reduce 24
+
+State 226:
+     (23) matparamexpr2 ::= matparamexpr2 TAG_emi_col BR3 dblval dblval dblval BR4 *
+
+                     {default} reduce 23
+
+State 227:
+     (22) matparamexpr2 ::= matparamexpr2 TAG_amb_col BR3 dblval dblval dblval BR4 *
+
+                     {default} reduce 22
+
+State 228:
+     (21) matparamexpr2 ::= matparamexpr2 TAG_spc BR3 dblval BR4 *
+
+                     {default} reduce 21
+
+State 229:
+     (20) matparamexpr2 ::= matparamexpr2 TAG_emi BR3 dblval BR4 *
+
+                     {default} reduce 20
+
+State 230:
+     (19) matparamexpr2 ::= matparamexpr2 TAG_amb BR3 dblval BR4 *
+
+                     {default} reduce 19
+
+State 231:
+     (18) matparamexpr2 ::= matparamexpr2 TAG_dif BR3 dblval BR4 *
+
+                     {default} reduce 18
+
+State 232:
+     (17) matparamexpr2 ::= matparamexpr2 TAG_col BR3 dblval dblval dblval dblval BR4 *
+
+                     {default} reduce 17
+
+State 233:
+      (8) dblval ::= INTVAL *
+
+                     {default} reduce 8
+
+State 234:
+      (7) dblval ::= DBLVAL *
+
+                     {default} reduce 7
+
+State 235:
+     (16) matparamexpr2 ::= matparamexpr2 TAG_dbls BR3 intval BR4 *
+
+                     {default} reduce 16
+
+State 236:
+     (15) matparamexpr2 ::= matparamexpr2 TAG_vcol BR3 intval BR4 *
+
+                     {default} reduce 15
+
+State 237:
+     (14) matparamexpr2 ::= matparamexpr2 TAG_uid BR3 intval BR4 *
+
+                     {default} reduce 14
+
+State 238:
+     (13) matparamexpr2 ::= matparamexpr2 TAG_shader BR3 intval BR4 *
+
+                     {default} reduce 13
+
+State 239:
+      (6) intval ::= INTVAL *
+
+                     {default} reduce 6
+
+State 240:
+     (10) matexpr ::= matexpr matexpr2 *
+
+                     {default} reduce 10
+
+State 241:
+      (9) strval ::= STRVAL *
+
+                     {default} reduce 9
+
+State 242:
+      (2) expr ::= expr TAG_Material intval BR1 matexpr BR2 *
+
+                     {default} reduce 2
+
+State 243:
+      (1) expr3 ::= TAG_MetasequoiaDocument TAG_FormatTextVer11 expr TAG_Eof *
+
+                     {default} reduce 1
+
+----------------------------------------------------
+Symbols:
+    0: $:
+    1: TAG_MetasequoiaDocument
+    2: TAG_FormatTextVer11
+    3: TAG_Eof
+    4: TAG_Material
+    5: BR1
+    6: BR2
+    7: TAG_Object
+    8: TAG_IncludeXml
+    9: INTVAL
+   10: DBLVAL
+   11: STRVAL
+   12: TAG_shader
+   13: BR3
+   14: BR4
+   15: TAG_uid
+   16: TAG_vcol
+   17: TAG_dbls
+   18: TAG_col
+   19: TAG_dif
+   20: TAG_amb
+   21: TAG_emi
+   22: TAG_spc
+   23: TAG_amb_col
+   24: TAG_emi_col
+   25: TAG_spc_col
+   26: TAG_power
+   27: TAG_reflect
+   28: TAG_refract
+   29: TAG_tex
+   30: TAG_aplane
+   31: TAG_bump
+   32: TAG_proj_type
+   33: TAG_proj_pos
+   34: TAG_proj_scale
+   35: TAG_proj_angle
+   36: TAG_depth
+   37: TAG_folding
+   38: TAG_scale
+   39: TAG_rotation
+   40: TAG_translation
+   41: TAG_patch
+   42: TAG_patchtri
+   43: TAG_segment
+   44: TAG_visible
+   45: TAG_locking
+   46: TAG_shading
+   47: TAG_facet
+   48: TAG_color
+   49: TAG_color_type
+   50: TAG_mirror
+   51: TAG_mirror_axis
+   52: TAG_mirror_dis
+   53: TAG_lathe
+   54: TAG_lathe_axis
+   55: TAG_lathe_seg
+   56: TAG_vertex
+   57: TAG_vertexattr
+   58: TAG_face
+   59: TAG_weit
+   60: TAG_V
+   61: TAG_M
+   62: TAG_UID
+   63: TAG_UV
+   64: TAG_COL
+   65: TAG_CRS
+   66: error:
+   67: intval: INTVAL
+   68: dblval: INTVAL DBLVAL
+   69: strval: STRVAL
+   70: matparamexpr2: <lambda> TAG_shader TAG_uid TAG_vcol TAG_dbls TAG_col TAG_dif TAG_amb TAG_emi TAG_spc TAG_amb_col TAG_emi_col TAG_spc_col TAG_power TAG_reflect TAG_refract TAG_tex TAG_aplane TAG_bump TAG_proj_type TAG_proj_pos TAG_proj_scale TAG_proj_angle
+   71: objexpr: <lambda> TAG_uid TAG_depth TAG_folding TAG_scale TAG_rotation TAG_translation TAG_patch TAG_patchtri TAG_segment TAG_visible TAG_locking TAG_shading TAG_facet TAG_color TAG_color_type TAG_mirror TAG_mirror_axis TAG_mirror_dis TAG_lathe TAG_lathe_axis TAG_lathe_seg TAG_vertex TAG_vertexattr TAG_face
+   72: vertexexpr: <lambda> INTVAL DBLVAL
+   73: faceexpr: <lambda> INTVAL
+   74: faceattrexpr: <lambda> TAG_V TAG_M TAG_UID TAG_UV TAG_COL TAG_CRS
+   75: uintarr: <lambda> INTVAL
+   76: colorrefarr: <lambda> INTVAL
+   77: intarr:
+   78: dblarr: <lambda> INTVAL DBLVAL
+   79: program: TAG_MetasequoiaDocument
+   80: expr3: TAG_MetasequoiaDocument
+   81: expr: <lambda> TAG_Material TAG_Object TAG_IncludeXml
+   82: matexpr: <lambda> STRVAL
+   83: matexpr2: STRVAL
+   84: vertexattrexpr: <lambda> TAG_uid TAG_color TAG_weit
+   85: vertexattrexpr2: TAG_uid TAG_color TAG_weit
+   86: uidexpr: <lambda> INTVAL
+   87: weitexpr: <lambda> INTVAL
+   88: colorexpr: <lambda> INTVAL
+   89: weitexpr2: INTVAL
+   90: colorexpr2: INTVAL

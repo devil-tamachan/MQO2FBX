@@ -1,0 +1,171 @@
+%token_type {PassData}
+
+%type intval {__int64}
+
+%type dblval {double}
+
+%type strval {CString*}
+%destructor strval {delete $$;}
+
+%type matparamexpr2 {CMYMaterial*}
+%destructor matparamexpr2 {if($$)delete $$;}
+
+%type objexpr {CMYObject*}
+%type vertexexpr {CAtlArray<CMYVertex*>*}
+%type faceexpr {CAtlArray<CMYFace*>*}
+%type faceattrexpr {CMYFace*}
+%type uintarr {CAtlArray<uint>*}
+%type colorrefarr {CAtlArray<COLORREF>*}
+%type intarr {CAtlArray<int>*}
+%type dblarr {CAtlArray<double>*}
+
+%extra_argument { CMYMQO *pMqo }
+
+%include {
+//#include "stdafx.h"
+#define assert ATLASSERT
+}
+
+%syntax_error {
+  ATLTRACE(_T("Syntax Error!\n"));
+}
+
+%start_symbol program
+
+program ::= expr3.
+
+expr3 ::= TAG_MetasequoiaDocument TAG_FormatTextVer11 expr TAG_Eof.
+
+//expr ::= TAG_Scene BR1 sceneexpr BR2. 
+expr ::= expr TAG_Material intval BR1 matexpr BR2. 
+expr ::= expr TAG_Object strval(B) BR1 objexpr(C) BR2. {C->name = *B; pMqo->m_objects.Add(C); C = NULL;}
+expr ::= expr TAG_IncludeXml strval. 
+expr ::= .
+
+intval(A) ::= INTVAL(B). { A = B.i; }
+
+dblval(A) ::= DBLVAL(B). { A = B.dbl; }
+dblval(A) ::= INTVAL(B). { A = (double)(B.i); }
+
+strval(A) ::= STRVAL(B). { A = B.str; B.str = NULL; }
+
+matexpr ::= matexpr matexpr2. 
+matexpr ::= . 
+matexpr2 ::= strval(A) matparamexpr2(B). {B->name = *A; pMqo->AddMaterial(B); B=NULL;}
+
+matparamexpr2(A) ::= matparamexpr2(B) TAG_shader BR3 intval(C) BR4. {B->shader = (CMYMaterial::SHADER)C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_uid BR3 intval(C) BR4.  {B->uid = (uint)C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_vcol BR3 intval(C) BR4.  {B->vcol = C ? true : false;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_dbls BR3 intval(C) BR4.  {B->dbls = C ? true : false;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_col BR3 dblval(D) dblval(E) dblval(F) dblval(G) BR4. {double* pCol = B->col; pCol[0] = D; pCol[1] = E; pCol[2] = F; pCol[3] = G; A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_dif BR3 dblval(C) BR4. {B->dif = C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_amb BR3 dblval(C) BR4. {B->amb = C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_emi BR3 dblval(C) BR4. {B->emi = C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_spc BR3 dblval(C) BR4. {B->spc = C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_amb_col BR3 dblval(C) dblval(D) dblval(E) BR4. {B->amb_col[0]=C;B->amb_col[1]=D;B->amb_col[2]=E; A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_emi_col BR3 dblval(C) dblval(D) dblval(E) BR4. {B->emi_col[0]=C;B->emi_col[1]=D;B->emi_col[2]=E; A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_spc_col BR3 dblval(C) dblval(D) dblval(E) BR4. {B->spc_col[0]=C;B->spc_col[1]=D;B->spc_col[2]=E; A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_power BR3 dblval(C) BR4. {B->power = C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_reflect BR3 dblval(C) BR4. {B->reflect = C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_refract BR3 dblval(C) BR4. {B->refract = C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_tex BR3 strval(C) BR4. {B->tex = *C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_aplane BR3 strval(C) BR4. {B->aplane = *C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_bump BR3 strval(C) BR4. {B->bump = *C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_proj_type BR3 intval(C) BR4. {B->proj_type = (CMYMaterial::PROJTYPE)C;A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_proj_pos BR3 dblval(C) dblval(D) dblval(E) BR4. {double* pProj_pos = B->proj_pos; pProj_pos[0] = C; pProj_pos[1] = D; pProj_pos[2] = E; A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_proj_scale BR3 dblval(C) dblval(D) dblval(E) BR4. {double* pProj_scale = B->proj_scale; pProj_scale[0] = C; pProj_scale[1] = D; pProj_scale[2] = E; A=B;}
+matparamexpr2(A) ::= matparamexpr2(B) TAG_proj_angle BR3 dblval(C) dblval(D) dblval(E) BR4. {double* pProj_angle = B->proj_angle; pProj_angle[0] = C; pProj_angle[1] = D; pProj_angle[2] = E; A=B;}
+matparamexpr2(A) ::= . {A = new CMYMaterial();}
+
+objexpr(A) ::= objexpr(B) TAG_uid intval(C). {A=B; A->uid = C;}
+objexpr(A) ::= objexpr(B) TAG_depth intval(C). {A=B; A->depth = C;}
+objexpr(A) ::= objexpr(B) TAG_folding intval(C). {A=B; A->folding = C?true:false;}
+objexpr(A) ::= objexpr(B) TAG_scale dblval(C) dblval(D) dblval(E). {A=B; A->scale[0] = C; A->scale[1] = D; A->scale[2] = E;}
+objexpr(A) ::= objexpr(B) TAG_rotation dblval(C) dblval(D) dblval(E). {A=B; A->rotation[0] = C; A->rotation[1] = D; A->rotation[2] = E;}
+objexpr(A) ::= objexpr(B) TAG_translation dblval(C) dblval(D) dblval(E). {A=B; A->translation[0] = C; A->translation[1] = D; A->translation[2] = E;}
+objexpr(A) ::= objexpr(B) TAG_patch intval. {A=B; /*A->patch = C;*/}
+objexpr(A) ::= objexpr(B) TAG_patchtri intval. {A=B; /*A->patchtri = C;*/}
+objexpr(A) ::= objexpr(B) TAG_segment intval. {A=B; /*A->segment = C;*/}
+objexpr(A) ::= objexpr(B) TAG_visible intval. {A=B; /*A->visible = C;*/}
+objexpr(A) ::= objexpr(B) TAG_locking intval. {A=B; /*A->locking = C;*/}
+objexpr(A) ::= objexpr(B) TAG_shading intval(C). {A=B; A->shading = (CMYObject::SHADING)C;}
+objexpr(A) ::= objexpr(B) TAG_facet dblval. {A=B; /*A->facet = C;*/}
+objexpr(A) ::= objexpr(B) TAG_color dblval(C) dblval(D) dblval(E). {A=B; A->color[0] = C; A->color[1] = D; A->color[2] = E;}
+objexpr(A) ::= objexpr(B) TAG_color_type intval(C). {A=B; A->color_type = C?true:false;}
+objexpr(A) ::= objexpr(B) TAG_mirror intval. {A=B; /*A->mirror = (CMYObject::MIRROR)C;*/}
+objexpr(A) ::= objexpr(B) TAG_mirror_axis intval. {A=B; /*A->mirror_axis = (CMYObject::MIRRORAXIS)C;*/}
+objexpr(A) ::= objexpr(B) TAG_mirror_dis dblval. {A=B; /*A->mirror_dis = C;*/}
+objexpr(A) ::= objexpr(B) TAG_lathe intval. {A=B; /*A->lathe = C?true:false;*/}
+objexpr(A) ::= objexpr(B) TAG_lathe_axis intval. {A=B; /*A->lathe_axis = (CMYObject::LATHEAXIS)C;*/}
+objexpr(A) ::= objexpr(B) TAG_lathe_seg intval. {A=B; /*A->lathe_seg = C;*/}
+objexpr(A) ::= objexpr(B) TAG_vertex intval BR1 vertexexpr(D) BR2. {A=B; A->vertex = D;}
+objexpr(A) ::= objexpr(B) TAG_vertexattr BR1 vertexattrexpr BR2. {A=B; }
+//objexpr(A) ::= objexpr(B) TAG_bvertex intval BR1 bvertexexpr BR2. {A=B; }
+objexpr(A) ::= objexpr(B) TAG_face intval BR1 faceexpr(D) BR2. {A=B; A->face = D;}
+objexpr(A) ::= . {A = new CMYObject();}
+
+vertexexpr(A) ::= vertexexpr(B) dblval(C) dblval(D) dblval(E). {A=B; A->Add(new CMYVertex(C,D,E)); }
+vertexexpr(A) ::= . {A = new CAtlArray<CMYVertex*>();}
+
+vertexattrexpr ::= vertexattrexpr vertexattrexpr2. 
+vertexattrexpr ::= . 
+vertexattrexpr2 ::= TAG_uid BR1 uidexpr BR2.
+vertexattrexpr2 ::= TAG_weit BR1 weitexpr BR2.
+vertexattrexpr2 ::= TAG_color BR1 colorexpr BR2.
+
+uidexpr ::= uidexpr intval. 
+uidexpr ::= . 
+
+weitexpr ::= weitexpr weitexpr2. 
+weitexpr ::= . 
+
+weitexpr2 ::= intval dblval. 
+
+colorexpr ::= colorexpr colorexpr2. 
+colorexpr ::= . 
+colorexpr2 ::= intval intval. 
+
+faceexpr(A) ::= faceexpr(B) intval faceattrexpr(D). {A=B; A->Add(D);}
+faceexpr(A) ::= . {A = new CAtlArray<CMYFace*>();}
+
+faceattrexpr(A) ::= faceattrexpr(B) TAG_V BR3 uintarr(C) BR4. {A=B; A->V = C;}
+faceattrexpr(A) ::= faceattrexpr(B) TAG_M BR3 intval(C) BR4. {A=B; A->M = C;}
+faceattrexpr(A) ::= faceattrexpr(B) TAG_UID BR3 intval BR4. {A=B; /*A->UID = C;*/}
+faceattrexpr(A) ::= faceattrexpr(B) TAG_UV BR3 dblarr(C) BR4. {A=B; A->UV = C;}
+faceattrexpr(A) ::= faceattrexpr(B) TAG_COL BR3 colorrefarr(C) BR4. {A=B; A->COL = C;}
+faceattrexpr(A) ::= faceattrexpr(B) TAG_CRS BR3 dblarr BR4. {A=B; /*A->CRS = C;*/}
+faceattrexpr(A) ::= . {A = new CMYFace();}
+
+uintarr(A) ::= uintarr(B) intval(C). {A=B; A->Add((uint)C);}
+uintarr(A) ::= . {A = new CAtlArray<uint>();}
+
+colorrefarr(A) ::= colorrefarr(B) intval(C). {A=B; A->Add((COLORREF)C);}
+colorrefarr(A) ::= . {A = new CAtlArray<COLORREF>();}
+
+//intarr(A) ::= intarr(B) intval(C). {A=B; A->Add(C);}
+//intarr(A) ::= . {A = new CAtlArray<int>();}
+
+dblarr(A) ::= dblarr(B) dblval(C). {A=B; A->Add(C);}
+dblarr(A) ::= . {A = new CAtlArray<double>();}
+
+/*
+sceneexpr ::= sceneexpr sceneexpr. 
+sceneexpr ::= TAG_pos dblval dblval dblval. 
+sceneexpr ::= TAG_lookat dblval dblval dblval. 
+sceneexpr ::= TAG_head dblval. 
+sceneexpr ::= TAG_pich dblval. 
+sceneexpr ::= TAG_bank dblval. 
+sceneexpr ::= TAG_ortho dblval. 
+sceneexpr ::= TAG_zoom2 dblval. 
+sceneexpr ::= TAG_amb dblval dblval dblval. 
+sceneexpr ::= TAG_frontclip dblval. 
+sceneexpr ::= TAG_backclip dblval. 
+sceneexpr ::= TAG_dirlights intval dirlightsexpr. 
+
+dirlightsexpr ::= dirlightsexpr dirlightsexpr. 
+dirlightsexpr ::= TAG_light BR1 lightexpr BR2. 
+
+lightexpr ::= lightexpr lightexpr. 
+lightexpr ::= TAG_dir dblval dblval dblval. 
+lightexpr ::= TAG_color dblval dblval dblval. 
+*/
