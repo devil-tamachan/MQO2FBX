@@ -1,0 +1,13 @@
+FBX SDK http://www.autodesk.com/products/fbx/overview
+
+re2c (Public Domain)
+Originally written by Peter Bumbulis (peter@csg.uwaterloo.ca)
+Currently maintained by Brian Young (bayoung@acm.org)
+
+Lemon Parser Generator (Public domain)
+
+tinyxml2 (zlib license)
+https://github.com/leethomason/tinyxml2
+
+ReadFile.cpp [from Binary Editor BZ] (New BSD License)
+Copyright (c) 1996-2013, c.mos(original author) & devil.tamachan@gmail.com(Modder)
