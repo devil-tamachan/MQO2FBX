@@ -532,7 +532,7 @@ HRESULT LoadFromFile(LPCTSTR path)
         for(int j = Vmax-1; j >= 0; j--)
         {
           lMesh->AddPolygon(V[j]);
-          lUVDiffuseElement->GetIndexArray().InsertAt(0, pUV ? lUVDiffuseElement->GetDirectArray().Add(FbxVector2( ((*pUV)[j*2]), 1.0-((*pUV)[j*2+1]) )) : 0 );
+          lUVDiffuseElement->GetIndexArray().Add(pUV ? lUVDiffuseElement->GetDirectArray().Add(FbxVector2( ((*pUV)[j*2]), 1.0-((*pUV)[j*2+1]) )) : 0 );
         }
 
         lMesh->EndPolygon();
