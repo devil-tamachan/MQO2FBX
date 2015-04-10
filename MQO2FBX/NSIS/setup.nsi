@@ -2,12 +2,14 @@
 
 !include Library.nsh
 !include x64.nsh
+!include WinVer.nsh
+!include "FileAssociation.nsh"
 
 RequestExecutionLevel admin
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "MQO2FBX"
-!define PRODUCT_VERSION "1.0.1"
+!define PRODUCT_VERSION "1.0.2"
 !define PRODUCT_PUBLISHER "devil.tamachan@gmail.com"
 !define PRODUCT_WEB_SITE "https://"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_NAME}"
@@ -64,10 +66,14 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite on
   File "..\Release\MQO2FBX.exe"
+  File "LICENSE.txt"
   CreateDirectory "$SMPROGRAMS\MQO2FBX"
   CreateShortCut "$SMPROGRAMS\MQO2FBX\MQO2FBX.lnk" "$INSTDIR\MQO2FBX.exe"
 ;  CreateDirectory "$INSTDIR\htm"
   SetOutPath "$INSTDIR"
+  ${If} ${AtLeastWin8}
+    ${registerExtension} "$INSTDIR\MQO2FBX.exe" ".mqo" "MQO2FBX.Document"
+  ${EndIf}
 
 SectionEnd
 
@@ -135,7 +141,11 @@ Function un.onInit
 FunctionEnd
 
 Section Uninstall
+  ${If} ${AtLeastWin8}
+    ${unregisterExtension} ".mqo" "MQO2FBX.Document"
+  ${EndIf}
   Delete "$INSTDIR\MQO2FBX.exe"
+  Delete "$INSTDIR\LICENSE.txt"
   Delete "$SMPROGRAMS\MQO2FBX\MQO2FBX.lnk"
   RMDir "$SMPROGRAMS\MQO2FBX"
 
