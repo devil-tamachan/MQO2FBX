@@ -125,6 +125,11 @@ public:
     CMessageLoop* pLoop = _Module.GetMessageLoop();
     pLoop->AddIdleHandler(this);
 
+    
+    int numArgs = 0;
+    LPWSTR *lpArgv = CommandLineToArgvW(GetCommandLineW(), &numArgs);
+    for(int i=1; i<numArgs; i++)AddPath(lpArgv[i]);
+
 		return TRUE;
 	}
 
