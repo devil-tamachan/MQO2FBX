@@ -4,7 +4,7 @@
 /* First off, code is included that follows the "include" declaration
 ** in the input grammar file. */
 #include <stdio.h>
-#line 24 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+#line 25 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
 
 //#include "stdafx.h"
 #define assert ATLASSERT
@@ -59,24 +59,25 @@
 **                       defined, then do no error processing.
 */
 #define YYCODETYPE unsigned char
-#define YYNOCODE 92
+#define YYNOCODE 90
 #define YYACTIONTYPE unsigned short int
 #define ParseTOKENTYPE PassData
 typedef union {
   int yyinit;
   ParseTOKENTYPE yy0;
-  CString* yy9;
-  CMYMaterial* yy15;
-  CMYFace* yy37;
-  CMYObject* yy45;
-  CAtlArray<int>* yy51;
-  CAtlArray<CMYFace*>* yy54;
-  CAtlArray<uint>* yy84;
-  CAtlArray<COLORREF>* yy98;
-  double yy102;
-  __int64 yy130;
-  CAtlArray<double>* yy163;
-  CAtlArray<CMYVertex*>* yy179;
+  CMYMaterial* yy3;
+  CAtlArray<CMYFace*>* yy8;
+  __int64 yy12;
+  CAtlArray<int>* yy13;
+  CAtlArray<CMYVertex*>* yy17;
+  CAtlArray<double>* yy29;
+  __CMyVertexAttr* yy31;
+  CAtlArray<COLORREF>* yy56;
+  CMYObject* yy61;
+  double yy116;
+  CString* yy117;
+  CMYFace* yy145;
+  CAtlArray<uint>* yy164;
 } YYMINORTYPE;
 #ifndef YYSTACKDEPTH
 #define YYSTACKDEPTH 100
@@ -85,8 +86,8 @@ typedef union {
 #define ParseARG_PDECL , CMYMQO *pMqo 
 #define ParseARG_FETCH  CMYMQO *pMqo  = yypParser->pMqo 
 #define ParseARG_STORE yypParser->pMqo  = pMqo 
-#define YYNSTATE 244
-#define YYNRULE 91
+#define YYNSTATE 243
+#define YYNRULE 90
 #define YY_NO_ACTION      (YYNSTATE+YYNRULE+2)
 #define YY_ACCEPT_ACTION  (YYNSTATE+YYNRULE+1)
 #define YY_ERROR_ACTION   (YYNSTATE+YYNRULE)
@@ -155,155 +156,153 @@ static const YYMINORTYPE yyzerominor = { 0 };
 **                     shifting non-terminals after a reduce.
 **  yy_default[]       Default action for each state.
 */
-#define YY_ACTTAB_COUNT (388)
+#define YY_ACTTAB_COUNT (379)
 static const YYACTIONTYPE yy_action[] = {
- /*     0 */   214,  115,  114,  112,  110,  109,  108,  243,   88,   78,
- /*    10 */   244,   79,   58,  192,  233,  234,  233,  234,  107,  175,
- /*    20 */   103,  233,  234,  233,  234,  238,  171,  336,  169,  102,
- /*    30 */    77,   76,   28,   25,   22,   75,   74,   73,   72,   71,
- /*    40 */    70,   19,   18,   69,   68,   67,   15,   66,   65,   64,
- /*    50 */    63,  120,   61,  166,  237,   87,  164,  162,  160,  158,
+ /*     0 */   213,  115,  114,  112,  110,  109,  108,  242,   87,   77,
+ /*    10 */   243,   78,   57,  191,  232,  233,  232,  233,  107,  175,
+ /*    20 */   102,  232,  233,  232,  233,  237,  171,  334,  169,  101,
+ /*    30 */    76,   75,   27,   24,   21,   74,   73,   72,   71,   70,
+ /*    40 */    69,   18,   17,   68,   67,   66,   14,   65,   64,   63,
+ /*    50 */    62,  120,   60,  166,  236,   86,  164,  162,  160,  158,
  /*    60 */   156,  154,  152,  150,  148,  146,  144,  142,  140,  138,
- /*    70 */   136,  134,  132,  130,  128,  126,  124,  190,  188,  180,
- /*    80 */    11,  239,  239,  239,  239,  101,  119,   62,  179,  173,
- /*    90 */   242,  186,   86,  183,  239,  241,  239,  236,  100,  240,
- /*   100 */   235,   85,  185,   84,   57,    3,  232,   53,  105,  231,
- /*   110 */   182,   52,   92,    4,  230,   51,  104,  229,   50,  117,
- /*   120 */     7,  228,  227,   49,   46,   12,  226,  177,   43,   40,
- /*   130 */   118,    2,  225,  224,  223,   39,   38,    1,  222,  221,
- /*   140 */    83,   99,   82,   10,  220,  219,   81,   80,  167,  218,
- /*   150 */    37,  106,   98,  217,   34,   97,   96,  216,   31,   95,
- /*   160 */   215,   94,  176,  241,    9,  189,   60,  168,   59,  239,
- /*   170 */    91,   90,   89,    8,    6,  135,  165,  337,  337,    5,
- /*   180 */   337,  163,  337,  337,  161,  337,  337,  337,  159,  337,
- /*   190 */   337,  337,  337,  337,  337,  133,  337,  131,  337,  129,
- /*   200 */   337,  337,  337,  337,  337,  337,  337,  122,   56,  213,
- /*   210 */   337,  212,  337,  337,  337,  337,  211,  337,  337,  337,
- /*   220 */   337,  337,  337,  337,  337,  337,  337,  337,  207,  206,
- /*   230 */   205,  204,  203,  337,  202,  337,  199,  198,  197,  195,
- /*   240 */   194,  193,  121,  181,  116,  337,  337,  113,  337,  111,
- /*   250 */   337,  337,  337,  337,  170,  337,  337,   55,  337,  337,
- /*   260 */   337,  337,  337,  337,   54,  337,  157,  337,  155,  337,
- /*   270 */   337,  337,  337,  337,  337,  337,  153,  151,  149,  337,
- /*   280 */    48,  337,  337,  337,  337,   47,  337,  337,  337,  337,
- /*   290 */   337,  337,  337,  337,  337,  337,  337,  147,   45,   44,
- /*   300 */   145,   42,  337,   41,  337,  143,  141,  139,  137,   36,
- /*   310 */    35,  127,   33,   32,  337,  337,  125,  337,   30,  337,
- /*   320 */   337,  337,  337,   29,  337,  337,  123,  337,  337,  337,
- /*   330 */   337,  337,  337,   27,  337,   26,  337,  210,  337,  337,
- /*   340 */   337,  337,  337,  337,  337,   24,   23,  209,  337,   21,
- /*   350 */   337,  337,  337,  337,   20,  337,  337,  337,  337,  337,
- /*   360 */   337,  337,  337,  337,  337,  337,  208,  201,   17,   16,
- /*   370 */   200,  337,  196,  337,   13,  191,  187,  337,  184,   93,
- /*   380 */   178,  172,  337,  337,  337,   14,  337,  174,
+ /*    70 */   136,  134,  132,  130,  128,  126,  124,  189,  188,  180,
+ /*    80 */    61,  238,  238,  238,  238,  100,  119,   10,  179,  173,
+ /*    90 */   241,  186,   85,  183,  238,  240,  238,  235,    3,   84,
+ /*   100 */   239,  182,   83,  104,  234,   56,   52,  185,  231,  230,
+ /*   110 */    51,    6,  229,   50,  103,  228,   49,  106,   48,  117,
+ /*   120 */   227,  226,   45,   11,  225,  224,   42,   39,    9,   38,
+ /*   130 */   118,  223,    2,  222,   37,    1,  221,  220,   82,   81,
+ /*   140 */   105,  219,  218,   80,   79,    8,  217,   36,   99,  216,
+ /*   150 */    33,  135,  215,   30,   98,   97,  214,   91,   96,   95,
+ /*   160 */    94,   93,  177,  167,   59,  335,    5,    7,  238,  165,
+ /*   170 */    58,  163,  176,   90,   89,   88,  240,    4,  335,  161,
+ /*   180 */   335,  335,  159,  335,  335,  335,  335,  133,  335,  131,
+ /*   190 */   335,  129,  335,  335,  335,  335,  335,  335,  122,  335,
+ /*   200 */   212,  335,  335,  211,  335,  335,  210,  335,  206,  335,
+ /*   210 */   335,  335,  205,  204,  203,  335,  335,  335,  335,  202,
+ /*   220 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
+ /*   230 */   201,  198,  335,  335,  197,  196,  194,  193,  192,  121,
+ /*   240 */   181,  116,  113,  111,  335,  187,  170,  335,   55,  335,
+ /*   250 */   335,   54,  335,  335,  335,  335,   53,  335,  157,  335,
+ /*   260 */   155,  335,  335,  335,  335,  335,  335,  153,  335,  151,
+ /*   270 */   335,  335,  149,  335,  335,   47,  335,   46,  335,  335,
+ /*   280 */   335,  147,   44,   43,  335,  335,  335,  335,  145,  335,
+ /*   290 */   335,  335,  335,  335,  335,  335,  335,  335,  335,   41,
+ /*   300 */    40,  335,  335,  143,  141,  139,  137,   35,   34,  127,
+ /*   310 */    32,   31,  125,  168,  184,   29,  335,   28,  335,  335,
+ /*   320 */   123,  335,  335,  335,  335,   26,  335,   25,  335,  209,
+ /*   330 */   335,  335,  335,  335,  335,  335,   23,  335,   22,  335,
+ /*   340 */   335,  208,  335,  335,   20,  335,   19,  335,  335,  335,
+ /*   350 */   207,  200,   16,  335,  335,  335,   15,  199,  335,  335,
+ /*   360 */   335,  335,  335,  335,  335,  335,  335,  335,  195,   12,
+ /*   370 */   335,  335,  190,   92,  178,  172,  335,   13,  174,
 };
 static const YYCODETYPE yy_lookahead[] = {
  /*     0 */     6,   60,   61,   62,   63,   64,   65,    3,    4,   15,
- /*    10 */     0,    7,    8,    6,    9,   10,    9,   10,   81,   14,
- /*    20 */     2,    9,   10,    9,   10,   14,   14,   79,   80,    5,
+ /*    10 */     0,    7,    8,    6,    9,   10,    9,   10,   82,   14,
+ /*    20 */     2,    9,   10,    9,   10,   14,   14,   80,   81,    5,
  /*    30 */    36,   37,   38,   39,   40,   41,   42,   43,   44,   45,
  /*    40 */    46,   47,   48,   49,   50,   51,   52,   53,   54,   55,
  /*    50 */    56,   57,   58,   12,   14,   13,   15,   16,   17,   18,
  /*    60 */    19,   20,   21,   22,   23,   24,   25,   26,   27,   28,
  /*    70 */    29,   30,   31,   32,   33,   34,   35,    6,    6,    6,
  /*    80 */    67,    9,    9,    9,    9,   69,   15,   67,   14,   14,
- /*    90 */     6,    6,   13,    6,    9,   11,    9,   14,    5,   83,
- /*   100 */    14,   13,   89,   13,   13,   82,   14,   13,   70,   14,
- /*   110 */    90,   13,   13,   84,   14,   13,   71,   14,   13,   48,
- /*   120 */    72,   14,   14,   13,   13,   86,   14,   14,   13,   13,
- /*   130 */    59,   87,   14,   14,   14,   13,   13,   88,   14,   14,
- /*   140 */    13,    5,   13,   73,   14,   14,   13,   13,   67,   14,
- /*   150 */    13,   74,    5,   14,   13,    5,    5,   14,   13,    5,
- /*   160 */    14,    5,   14,   11,   75,   85,   13,    1,   13,    9,
- /*   170 */    13,   13,   13,   76,   78,   69,   67,   91,   91,   78,
- /*   180 */    91,   67,   91,   91,   67,   91,   91,   91,   67,   91,
- /*   190 */    91,   91,   91,   91,   91,   69,   91,   69,   91,   67,
- /*   200 */    91,   91,   91,   91,   91,   91,   91,   69,   68,   67,
- /*   210 */    91,   67,   91,   91,   91,   91,   67,   91,   91,   91,
- /*   220 */    91,   91,   91,   91,   91,   91,   91,   91,   67,   67,
- /*   230 */    67,   67,   67,   91,   67,   91,   67,   67,   67,   67,
- /*   240 */    67,   67,   67,   67,   67,   91,   91,   67,   91,   67,
- /*   250 */    91,   91,   91,   91,   69,   91,   91,   68,   91,   91,
- /*   260 */    91,   91,   91,   91,   68,   91,   68,   91,   68,   91,
- /*   270 */    91,   91,   91,   91,   91,   91,   68,   68,   68,   91,
- /*   280 */    68,   91,   91,   91,   91,   68,   91,   91,   91,   91,
- /*   290 */    91,   91,   91,   91,   91,   91,   91,   68,   68,   68,
- /*   300 */    68,   68,   91,   68,   91,   68,   68,   68,   68,   68,
- /*   310 */    68,   68,   68,   68,   91,   91,   68,   91,   68,   91,
- /*   320 */    91,   91,   91,   68,   91,   91,   68,   91,   91,   91,
- /*   330 */    91,   91,   91,   68,   91,   68,   91,   68,   91,   91,
- /*   340 */    91,   91,   91,   91,   91,   68,   68,   68,   91,   68,
- /*   350 */    91,   91,   91,   91,   68,   91,   91,   91,   91,   91,
- /*   360 */    91,   91,   91,   91,   91,   91,   68,   68,   68,   68,
- /*   370 */    68,   91,   68,   91,   68,   68,   67,   91,   68,   67,
- /*   380 */    67,   67,   91,   91,   91,   68,   91,   68,
+ /*    90 */     6,    6,   13,    6,    9,   11,    9,   14,   83,   13,
+ /*   100 */    84,   88,   13,   70,   14,   13,   13,   87,   14,   14,
+ /*   110 */    13,   72,   14,   13,   71,   14,   13,   79,   13,   48,
+ /*   120 */    14,   14,   13,   77,   14,   14,   13,   13,   73,   13,
+ /*   130 */    59,   14,   85,   14,   13,   86,   14,   14,   13,   13,
+ /*   140 */    74,   14,   14,   13,   13,   75,   14,   13,    5,   14,
+ /*   150 */    13,   69,   14,   13,    5,    5,   14,   13,    5,    5,
+ /*   160 */     5,    5,   14,   67,   13,   89,   78,   76,    9,   67,
+ /*   170 */    13,   67,   14,   13,   13,   13,   11,   78,   89,   67,
+ /*   180 */    89,   89,   67,   89,   89,   89,   89,   69,   89,   69,
+ /*   190 */    89,   67,   89,   89,   89,   89,   89,   89,   69,   89,
+ /*   200 */    67,   89,   89,   67,   89,   89,   67,   89,   67,   89,
+ /*   210 */    89,   89,   67,   67,   67,   89,   89,   89,   89,   67,
+ /*   220 */    89,   89,   89,   89,   89,   89,   89,   89,   89,   89,
+ /*   230 */    67,   67,   89,   89,   67,   67,   67,   67,   67,   67,
+ /*   240 */    67,   67,   67,   67,   89,   67,   69,   89,   68,   89,
+ /*   250 */    89,   68,   89,   89,   89,   89,   68,   89,   68,   89,
+ /*   260 */    68,   89,   89,   89,   89,   89,   89,   68,   89,   68,
+ /*   270 */    89,   89,   68,   89,   89,   68,   89,   68,   89,   89,
+ /*   280 */    89,   68,   68,   68,   89,   89,   89,   89,   68,   89,
+ /*   290 */    89,   89,   89,   89,   89,   89,   89,   89,   89,   68,
+ /*   300 */    68,   89,   89,   68,   68,   68,   68,   68,   68,   68,
+ /*   310 */    68,   68,   68,    1,   68,   68,   89,   68,   89,   89,
+ /*   320 */    68,   89,   89,   89,   89,   68,   89,   68,   89,   68,
+ /*   330 */    89,   89,   89,   89,   89,   89,   68,   89,   68,   89,
+ /*   340 */    89,   68,   89,   89,   68,   89,   68,   89,   89,   89,
+ /*   350 */    68,   68,   68,   89,   89,   89,   68,   68,   89,   89,
+ /*   360 */    89,   89,   89,   89,   89,   89,   89,   89,   68,   68,
+ /*   370 */    89,   89,   68,   67,   67,   67,   89,   68,   68,
 };
 #define YY_SHIFT_USE_DFLT (-60)
 #define YY_SHIFT_COUNT (169)
 #define YY_SHIFT_MIN   (-59)
-#define YY_SHIFT_MAX   (166)
+#define YY_SHIFT_MAX   (312)
 static const short yy_shift_ofst[] = {
- /*     0 */   166,   87,   85,   84,   71,   12,    5,    7,   75,   74,
- /*    10 */    73,   14,   72,   14,   14,   14,   14,   14,   14,   14,
+ /*     0 */   312,   87,   85,   84,   12,    5,    7,   75,   74,   73,
+ /*    10 */    14,   72,   14,   14,   14,   14,   14,   14,   14,   14,
  /*    20 */    14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
  /*    30 */    14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
  /*    40 */    14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
- /*    50 */    14,   14,   14,   14,   14,   14,   14,   14,  152,  160,
- /*    60 */   160,  160,  160,  160,  160,  160,  160,  160,  160,  160,
- /*    70 */   160,  160,  160,  160,  160,  160,  160,  160,  160,  152,
- /*    80 */   160,  152,  152,  152,  160,  160,  160,  160,  160,  -60,
+ /*    50 */    14,   14,   14,   14,   14,   14,   14,  165,  159,  159,
+ /*    60 */   159,  159,  159,  159,  159,  159,  159,  159,  159,  159,
+ /*    70 */   159,  159,  159,  159,  159,  159,  159,  159,  165,  159,
+ /*    80 */   165,  165,  165,  159,  159,  159,  159,  159,  -60,  -60,
  /*    90 */   -60,  -60,  -60,  -60,  -60,  -60,  -60,  -60,  -60,  -60,
- /*   100 */   -60,  -60,  -60,  -60,   -6,   41,  -59,    4,  159,  158,
- /*   110 */   157,  148,  155,  113,  153,   99,  156,  154,  151,  150,
- /*   120 */   147,  136,   93,  146,  145,  143,  141,  139,  137,  135,
- /*   130 */   134,  131,  133,  130,  129,  125,  127,  124,  123,  120,
- /*   140 */   122,  119,  116,  118,  115,  112,  111,  108,  110,  107,
- /*   150 */   105,  103,  102,  100,   98,   95,   94,   92,   91,   86,
- /*   160 */    90,   83,   88,   40,   79,   11,   42,   24,   18,   10,
+ /*   100 */   -60,  -60,  -60,   -6,   41,  -59,   71,    4,  162,  161,
+ /*   110 */   160,  158,  157,  148,  151,  144,  156,  155,  154,  153,
+ /*   120 */   150,  149,  143,  142,  140,  138,  137,  135,  134,  132,
+ /*   130 */   131,  128,  130,  127,  126,  123,  125,  122,  121,  119,
+ /*   140 */   116,  117,  114,  111,  113,  110,  109,  107,  105,  106,
+ /*   150 */   103,  101,  100,   98,   97,   95,   93,   94,   92,   90,
+ /*   160 */    89,   83,   86,   40,   79,   11,   42,   24,   18,   10,
 };
-#define YY_REDUCE_USE_DFLT (-64)
-#define YY_REDUCE_COUNT (103)
-#define YY_REDUCE_MIN   (-63)
-#define YY_REDUCE_MAX   (319)
+#define YY_REDUCE_USE_DFLT (-65)
+#define YY_REDUCE_COUNT (102)
+#define YY_REDUCE_MIN   (-64)
+#define YY_REDUCE_MAX   (310)
 static const short yy_reduce_ofst[] = {
- /*     0 */   -52,   20,   13,   16,   80,  319,  319,  317,  314,  313,
- /*    10 */   312,  310,  309,  307,  306,  304,  302,  301,  300,  299,
- /*    20 */   298,  286,  281,  279,  278,  277,  269,  267,  265,  258,
- /*    30 */   255,  250,  248,  245,  244,  243,  242,  241,  240,  239,
- /*    40 */   238,  237,  235,  233,  232,  231,  230,  229,  217,  212,
- /*    50 */   210,  209,  208,  200,  198,  196,  189,  140,  185,  182,
- /*    60 */   180,  177,  176,  175,  174,  173,  172,  171,  170,  169,
- /*    70 */   167,  165,  164,  163,  162,  161,  149,  144,  142,  138,
- /*    80 */   132,  128,  126,  106,  121,  117,  114,  109,   81,  101,
- /*    90 */    97,   96,   89,   77,   70,   49,   44,   39,   29,   48,
- /*   100 */    45,   38,   23,  -63,
+ /*     0 */   -53,   13,   20,   16,  310,  310,  309,  308,  307,  306,
+ /*    10 */   246,  178,  304,  301,  300,  289,  288,  284,  283,  282,
+ /*    20 */   278,  276,  273,  270,  268,  261,  259,  257,  252,  249,
+ /*    30 */   247,  244,  243,  242,  241,  240,  239,  238,  237,  236,
+ /*    40 */   235,  232,  231,  220,  215,  214,  213,  209,  207,  204,
+ /*    50 */   201,  199,  192,  190,  188,  183,  180,  177,  176,  175,
+ /*    60 */   174,  173,  172,  171,  170,  169,  168,  167,  164,  163,
+ /*    70 */   152,  147,  146,  145,  141,  139,  136,  133,  129,  124,
+ /*    80 */   120,  118,   82,  115,  112,  104,  102,   96,   99,   91,
+ /*    90 */    88,   70,   66,   55,   49,   47,   46,   38,   39,   43,
+ /*   100 */    33,   15,  -64,
 };
 static const YYACTIONTYPE yy_default[] = {
- /*     0 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*    10 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*    20 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*    30 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*    40 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*    50 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*    60 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*    70 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*    80 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  334,
- /*    90 */   332,  334,  330,  328,  321,  318,  315,  313,  308,  306,
- /*   100 */   304,  279,  255,  249,  335,  256,  320,  335,  335,  335,
- /*   110 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*   120 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*   130 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*   140 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*   150 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*   160 */   335,  335,  335,  335,  335,  335,  335,  335,  335,  335,
- /*   170 */   248,  327,  331,  326,  333,  325,  324,  323,  329,  322,
- /*   180 */   303,  319,  317,  311,  316,  314,  310,  312,  309,  307,
- /*   190 */   302,  305,  301,  300,  299,  298,  297,  296,  295,  294,
- /*   200 */   293,  292,  291,  290,  289,  288,  287,  286,  285,  284,
- /*   210 */   283,  282,  281,  280,  247,  278,  277,  276,  275,  274,
- /*   220 */   273,  272,  271,  270,  269,  268,  267,  266,  265,  264,
- /*   230 */   263,  262,  261,  252,  251,  260,  259,  258,  257,  250,
- /*   240 */   254,  253,  246,  245,
+ /*     0 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*    10 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*    20 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*    30 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*    40 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*    50 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*    60 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*    70 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*    80 */   333,  333,  333,  333,  333,  333,  333,  333,  332,  328,
+ /*    90 */   332,  326,  324,  317,  314,  311,  330,  309,  305,  303,
+ /*   100 */   278,  254,  248,  333,  255,  316,  333,  333,  333,  333,
+ /*   110 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*   120 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*   130 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*   140 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*   150 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*   160 */   333,  333,  333,  333,  333,  333,  333,  333,  333,  333,
+ /*   170 */   247,  323,  327,  322,  331,  321,  320,  319,  325,  318,
+ /*   180 */   302,  315,  313,  308,  312,  310,  307,  329,  306,  301,
+ /*   190 */   304,  300,  299,  298,  297,  296,  295,  294,  293,  292,
+ /*   200 */   291,  290,  289,  288,  287,  286,  285,  284,  283,  282,
+ /*   210 */   281,  280,  279,  246,  277,  276,  275,  274,  273,  272,
+ /*   220 */   271,  270,  269,  268,  267,  266,  265,  264,  263,  262,
+ /*   230 */   261,  260,  251,  250,  259,  258,  257,  256,  249,  253,
+ /*   240 */   252,  245,  244,
 };
 
 /* The next table maps tokens into fallback tokens.  If a construct
@@ -415,10 +414,10 @@ static const char *const yyTokenName[] = {
   "TAG_COL",       "TAG_CRS",       "error",         "intval",      
   "dblval",        "strval",        "matparamexpr2",  "objexpr",     
   "vertexexpr",    "faceexpr",      "faceattrexpr",  "uintarr",     
-  "colorrefarr",   "intarr",        "dblarr",        "program",     
-  "expr3",         "expr",          "matexpr",       "matexpr2",    
-  "vertexattrexpr",  "vertexattrexpr2",  "uidexpr",       "weitexpr",    
-  "colorexpr",     "weitexpr2",     "colorexpr2",  
+  "colorrefarr",   "intarr",        "dblarr",        "vertexattrexpr2",
+  "program",       "expr3",         "expr",          "matexpr",     
+  "matexpr2",      "weitexpr",      "colorexpr",     "weitexpr2",   
+  "colorexpr2",  
 };
 #endif /* NDEBUG */
 
@@ -484,39 +483,38 @@ static const char *const yyRuleName[] = {
  /*  55 */ "objexpr ::= objexpr TAG_lathe_axis intval",
  /*  56 */ "objexpr ::= objexpr TAG_lathe_seg intval",
  /*  57 */ "objexpr ::= objexpr TAG_vertex intval BR1 vertexexpr BR2",
- /*  58 */ "objexpr ::= objexpr TAG_vertexattr BR1 vertexattrexpr BR2",
+ /*  58 */ "objexpr ::= objexpr TAG_vertexattr BR1 vertexattrexpr2 BR2",
  /*  59 */ "objexpr ::= objexpr TAG_face intval BR1 faceexpr BR2",
  /*  60 */ "objexpr ::=",
  /*  61 */ "vertexexpr ::= vertexexpr dblval dblval dblval",
  /*  62 */ "vertexexpr ::=",
- /*  63 */ "vertexattrexpr ::= vertexattrexpr vertexattrexpr2",
- /*  64 */ "vertexattrexpr ::=",
- /*  65 */ "vertexattrexpr2 ::= TAG_uid BR1 uidexpr BR2",
- /*  66 */ "vertexattrexpr2 ::= TAG_weit BR1 weitexpr BR2",
- /*  67 */ "vertexattrexpr2 ::= TAG_color BR1 colorexpr BR2",
- /*  68 */ "uidexpr ::= uidexpr intval",
- /*  69 */ "uidexpr ::=",
- /*  70 */ "weitexpr ::= weitexpr weitexpr2",
- /*  71 */ "weitexpr ::=",
- /*  72 */ "weitexpr2 ::= intval dblval",
- /*  73 */ "colorexpr ::= colorexpr colorexpr2",
- /*  74 */ "colorexpr ::=",
- /*  75 */ "colorexpr2 ::= intval intval",
- /*  76 */ "faceexpr ::= faceexpr intval faceattrexpr",
- /*  77 */ "faceexpr ::=",
- /*  78 */ "faceattrexpr ::= faceattrexpr TAG_V BR3 uintarr BR4",
- /*  79 */ "faceattrexpr ::= faceattrexpr TAG_M BR3 intval BR4",
- /*  80 */ "faceattrexpr ::= faceattrexpr TAG_UID BR3 intval BR4",
- /*  81 */ "faceattrexpr ::= faceattrexpr TAG_UV BR3 dblarr BR4",
- /*  82 */ "faceattrexpr ::= faceattrexpr TAG_COL BR3 colorrefarr BR4",
- /*  83 */ "faceattrexpr ::= faceattrexpr TAG_CRS BR3 dblarr BR4",
- /*  84 */ "faceattrexpr ::=",
- /*  85 */ "uintarr ::= uintarr intval",
- /*  86 */ "uintarr ::=",
- /*  87 */ "colorrefarr ::= colorrefarr intval",
- /*  88 */ "colorrefarr ::=",
- /*  89 */ "dblarr ::= dblarr dblval",
- /*  90 */ "dblarr ::=",
+ /*  63 */ "vertexattrexpr2 ::= vertexattrexpr2 TAG_uid BR1 intarr BR2",
+ /*  64 */ "vertexattrexpr2 ::= vertexattrexpr2 TAG_weit BR1 weitexpr BR2",
+ /*  65 */ "vertexattrexpr2 ::= vertexattrexpr2 TAG_color BR1 colorexpr BR2",
+ /*  66 */ "vertexattrexpr2 ::=",
+ /*  67 */ "weitexpr ::= weitexpr weitexpr2",
+ /*  68 */ "weitexpr ::=",
+ /*  69 */ "weitexpr2 ::= intval dblval",
+ /*  70 */ "colorexpr ::= colorexpr colorexpr2",
+ /*  71 */ "colorexpr ::=",
+ /*  72 */ "colorexpr2 ::= intval intval",
+ /*  73 */ "faceexpr ::= faceexpr intval faceattrexpr",
+ /*  74 */ "faceexpr ::=",
+ /*  75 */ "faceattrexpr ::= faceattrexpr TAG_V BR3 uintarr BR4",
+ /*  76 */ "faceattrexpr ::= faceattrexpr TAG_M BR3 intval BR4",
+ /*  77 */ "faceattrexpr ::= faceattrexpr TAG_UID BR3 intval BR4",
+ /*  78 */ "faceattrexpr ::= faceattrexpr TAG_UV BR3 dblarr BR4",
+ /*  79 */ "faceattrexpr ::= faceattrexpr TAG_COL BR3 colorrefarr BR4",
+ /*  80 */ "faceattrexpr ::= faceattrexpr TAG_CRS BR3 dblarr BR4",
+ /*  81 */ "faceattrexpr ::=",
+ /*  82 */ "uintarr ::= uintarr intval",
+ /*  83 */ "uintarr ::=",
+ /*  84 */ "colorrefarr ::= colorrefarr intval",
+ /*  85 */ "colorrefarr ::=",
+ /*  86 */ "intarr ::= intarr intval",
+ /*  87 */ "intarr ::=",
+ /*  88 */ "dblarr ::= dblarr dblval",
+ /*  89 */ "dblarr ::=",
 };
 #endif /* NDEBUG */
 
@@ -598,15 +596,15 @@ static void yy_destructor(
     case 69: /* strval */
 {
 #line 8 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-delete (yypminor->yy9);
-#line 603 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+delete (yypminor->yy117);
+#line 601 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
 }
       break;
     case 70: /* matparamexpr2 */
 {
 #line 11 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-if((yypminor->yy15))delete (yypminor->yy15);
-#line 610 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+if((yypminor->yy3))delete (yypminor->yy3);
+#line 608 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
 }
       break;
     default:  break;   /* If no destructor action specified: do nothing */
@@ -844,19 +842,19 @@ static const struct {
   YYCODETYPE lhs;         /* Symbol on the left-hand side of the rule */
   unsigned char nrhs;     /* Number of right-hand side symbols in the rule */
 } yyRuleInfo[] = {
-  { 79, 1 },
-  { 80, 4 },
-  { 81, 6 },
-  { 81, 6 },
-  { 81, 3 },
-  { 81, 0 },
+  { 80, 1 },
+  { 81, 4 },
+  { 82, 6 },
+  { 82, 6 },
+  { 82, 3 },
+  { 82, 0 },
   { 67, 1 },
   { 68, 1 },
   { 68, 1 },
   { 69, 1 },
-  { 82, 2 },
-  { 82, 0 },
   { 83, 2 },
+  { 83, 0 },
+  { 84, 2 },
   { 70, 5 },
   { 70, 5 },
   { 70, 5 },
@@ -907,19 +905,16 @@ static const struct {
   { 71, 0 },
   { 72, 4 },
   { 72, 0 },
-  { 84, 2 },
-  { 84, 0 },
-  { 85, 4 },
-  { 85, 4 },
-  { 85, 4 },
+  { 79, 5 },
+  { 79, 5 },
+  { 79, 5 },
+  { 79, 0 },
+  { 85, 2 },
+  { 85, 0 },
+  { 87, 2 },
   { 86, 2 },
   { 86, 0 },
-  { 87, 2 },
-  { 87, 0 },
-  { 89, 2 },
   { 88, 2 },
-  { 88, 0 },
-  { 90, 2 },
   { 73, 3 },
   { 73, 0 },
   { 74, 5 },
@@ -933,6 +928,8 @@ static const struct {
   { 75, 0 },
   { 76, 2 },
   { 76, 0 },
+  { 77, 2 },
+  { 77, 0 },
   { 78, 2 },
   { 78, 0 },
 };
@@ -990,366 +987,392 @@ static void yy_reduce(
   **     break;
   */
       case 3: /* expr ::= expr TAG_Object strval BR1 objexpr BR2 */
-#line 41 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-1].minor.yy45->name = *yymsp[-3].minor.yy9; pMqo->m_objects.Add(yymsp[-1].minor.yy45); yymsp[-1].minor.yy45 = NULL;}
-#line 996 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 42 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-1].minor.yy61->name = *yymsp[-3].minor.yy117; pMqo->m_objects.Add(yymsp[-1].minor.yy61); yymsp[-1].minor.yy61 = NULL;}
+#line 993 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 4: /* expr ::= expr TAG_IncludeXml strval */
-#line 42 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+#line 43 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
 {
   yy_destructor(yypParser,69,&yymsp[0].minor);
 }
-#line 1003 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 1000 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 6: /* intval ::= INTVAL */
-#line 45 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{ yygotominor.yy130 = yymsp[0].minor.yy0.i; }
-#line 1008 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 46 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{ yygotominor.yy12 = yymsp[0].minor.yy0.i; }
+#line 1005 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 7: /* dblval ::= DBLVAL */
-#line 47 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{ yygotominor.yy102 = yymsp[0].minor.yy0.dbl; }
-#line 1013 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 48 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{ yygotominor.yy116 = yymsp[0].minor.yy0.dbl; }
+#line 1010 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 8: /* dblval ::= INTVAL */
-#line 48 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{ yygotominor.yy102 = (double)(yymsp[0].minor.yy0.i); }
-#line 1018 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 49 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{ yygotominor.yy116 = (double)(yymsp[0].minor.yy0.i); }
+#line 1015 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 9: /* strval ::= STRVAL */
-#line 50 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{ yygotominor.yy9 = yymsp[0].minor.yy0.str; yymsp[0].minor.yy0.str = NULL; }
-#line 1023 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 51 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{ yygotominor.yy117 = yymsp[0].minor.yy0.str; yymsp[0].minor.yy0.str = NULL; }
+#line 1020 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 12: /* matexpr2 ::= strval matparamexpr2 */
-#line 54 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[0].minor.yy15->name = *yymsp[-1].minor.yy9; pMqo->AddMaterial(yymsp[0].minor.yy15); yymsp[0].minor.yy15=NULL;}
-#line 1028 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 55 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[0].minor.yy3->name = *yymsp[-1].minor.yy117; pMqo->AddMaterial(yymsp[0].minor.yy3); yymsp[0].minor.yy3=NULL;}
+#line 1025 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 13: /* matparamexpr2 ::= matparamexpr2 TAG_shader BR3 intval BR4 */
-#line 56 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->shader = (CMYMaterial::SHADER)yymsp[-1].minor.yy130;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1033 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 57 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->shader = (CMYMaterial::SHADER)yymsp[-1].minor.yy12;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1030 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 14: /* matparamexpr2 ::= matparamexpr2 TAG_uid BR3 intval BR4 */
-#line 57 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->uid = (uint)yymsp[-1].minor.yy130;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1038 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 58 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->uid = (uint)yymsp[-1].minor.yy12;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1035 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 15: /* matparamexpr2 ::= matparamexpr2 TAG_vcol BR3 intval BR4 */
-#line 58 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->vcol = yymsp[-1].minor.yy130 ? true : false;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1043 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 59 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->vcol = yymsp[-1].minor.yy12 ? true : false;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1040 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 16: /* matparamexpr2 ::= matparamexpr2 TAG_dbls BR3 intval BR4 */
-#line 59 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->dbls = yymsp[-1].minor.yy130 ? true : false;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1048 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 60 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->dbls = yymsp[-1].minor.yy12 ? true : false;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1045 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 17: /* matparamexpr2 ::= matparamexpr2 TAG_col BR3 dblval dblval dblval dblval BR4 */
-#line 60 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{double* pCol = yymsp[-7].minor.yy15->col; pCol[0] = yymsp[-4].minor.yy102; pCol[1] = yymsp[-3].minor.yy102; pCol[2] = yymsp[-2].minor.yy102; pCol[3] = yymsp[-1].minor.yy102; yygotominor.yy15=yymsp[-7].minor.yy15;}
-#line 1053 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 61 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{double* pCol = yymsp[-7].minor.yy3->col; pCol[0] = yymsp[-4].minor.yy116; pCol[1] = yymsp[-3].minor.yy116; pCol[2] = yymsp[-2].minor.yy116; pCol[3] = yymsp[-1].minor.yy116; yygotominor.yy3=yymsp[-7].minor.yy3;}
+#line 1050 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 18: /* matparamexpr2 ::= matparamexpr2 TAG_dif BR3 dblval BR4 */
-#line 61 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->dif = yymsp[-1].minor.yy102;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1058 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 62 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->dif = yymsp[-1].minor.yy116;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1055 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 19: /* matparamexpr2 ::= matparamexpr2 TAG_amb BR3 dblval BR4 */
-#line 62 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->amb = yymsp[-1].minor.yy102;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1063 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 63 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->amb = yymsp[-1].minor.yy116;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1060 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 20: /* matparamexpr2 ::= matparamexpr2 TAG_emi BR3 dblval BR4 */
-#line 63 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->emi = yymsp[-1].minor.yy102;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1068 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 64 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->emi = yymsp[-1].minor.yy116;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1065 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 21: /* matparamexpr2 ::= matparamexpr2 TAG_spc BR3 dblval BR4 */
-#line 64 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->spc = yymsp[-1].minor.yy102;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1073 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 65 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->spc = yymsp[-1].minor.yy116;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1070 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 22: /* matparamexpr2 ::= matparamexpr2 TAG_amb_col BR3 dblval dblval dblval BR4 */
-#line 65 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-6].minor.yy15->amb_col[0]=yymsp[-3].minor.yy102;yymsp[-6].minor.yy15->amb_col[1]=yymsp[-2].minor.yy102;yymsp[-6].minor.yy15->amb_col[2]=yymsp[-1].minor.yy102; yygotominor.yy15=yymsp[-6].minor.yy15;}
-#line 1078 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 66 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-6].minor.yy3->amb_col[0]=yymsp[-3].minor.yy116;yymsp[-6].minor.yy3->amb_col[1]=yymsp[-2].minor.yy116;yymsp[-6].minor.yy3->amb_col[2]=yymsp[-1].minor.yy116; yygotominor.yy3=yymsp[-6].minor.yy3;}
+#line 1075 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 23: /* matparamexpr2 ::= matparamexpr2 TAG_emi_col BR3 dblval dblval dblval BR4 */
-#line 66 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-6].minor.yy15->emi_col[0]=yymsp[-3].minor.yy102;yymsp[-6].minor.yy15->emi_col[1]=yymsp[-2].minor.yy102;yymsp[-6].minor.yy15->emi_col[2]=yymsp[-1].minor.yy102; yygotominor.yy15=yymsp[-6].minor.yy15;}
-#line 1083 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 67 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-6].minor.yy3->emi_col[0]=yymsp[-3].minor.yy116;yymsp[-6].minor.yy3->emi_col[1]=yymsp[-2].minor.yy116;yymsp[-6].minor.yy3->emi_col[2]=yymsp[-1].minor.yy116; yygotominor.yy3=yymsp[-6].minor.yy3;}
+#line 1080 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 24: /* matparamexpr2 ::= matparamexpr2 TAG_spc_col BR3 dblval dblval dblval BR4 */
-#line 67 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-6].minor.yy15->spc_col[0]=yymsp[-3].minor.yy102;yymsp[-6].minor.yy15->spc_col[1]=yymsp[-2].minor.yy102;yymsp[-6].minor.yy15->spc_col[2]=yymsp[-1].minor.yy102; yygotominor.yy15=yymsp[-6].minor.yy15;}
-#line 1088 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 68 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-6].minor.yy3->spc_col[0]=yymsp[-3].minor.yy116;yymsp[-6].minor.yy3->spc_col[1]=yymsp[-2].minor.yy116;yymsp[-6].minor.yy3->spc_col[2]=yymsp[-1].minor.yy116; yygotominor.yy3=yymsp[-6].minor.yy3;}
+#line 1085 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 25: /* matparamexpr2 ::= matparamexpr2 TAG_power BR3 dblval BR4 */
-#line 68 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->power = yymsp[-1].minor.yy102;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1093 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 69 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->power = yymsp[-1].minor.yy116;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1090 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 26: /* matparamexpr2 ::= matparamexpr2 TAG_reflect BR3 dblval BR4 */
-#line 69 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->reflect = yymsp[-1].minor.yy102;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1098 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 70 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->reflect = yymsp[-1].minor.yy116;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1095 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 27: /* matparamexpr2 ::= matparamexpr2 TAG_refract BR3 dblval BR4 */
-#line 70 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->refract = yymsp[-1].minor.yy102;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1103 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 71 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->refract = yymsp[-1].minor.yy116;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1100 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 28: /* matparamexpr2 ::= matparamexpr2 TAG_tex BR3 strval BR4 */
-#line 71 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->tex = *yymsp[-1].minor.yy9;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1108 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 72 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->tex = *yymsp[-1].minor.yy117;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1105 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 29: /* matparamexpr2 ::= matparamexpr2 TAG_aplane BR3 strval BR4 */
-#line 72 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->aplane = *yymsp[-1].minor.yy9;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1113 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 73 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->aplane = *yymsp[-1].minor.yy117;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1110 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 30: /* matparamexpr2 ::= matparamexpr2 TAG_bump BR3 strval BR4 */
-#line 73 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->bump = *yymsp[-1].minor.yy9;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1118 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 74 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->bump = *yymsp[-1].minor.yy117;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1115 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 31: /* matparamexpr2 ::= matparamexpr2 TAG_proj_type BR3 intval BR4 */
-#line 74 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yymsp[-4].minor.yy15->proj_type = (CMYMaterial::PROJTYPE)yymsp[-1].minor.yy130;yygotominor.yy15=yymsp[-4].minor.yy15;}
-#line 1123 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 75 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yymsp[-4].minor.yy3->proj_type = (CMYMaterial::PROJTYPE)yymsp[-1].minor.yy12;yygotominor.yy3=yymsp[-4].minor.yy3;}
+#line 1120 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 32: /* matparamexpr2 ::= matparamexpr2 TAG_proj_pos BR3 dblval dblval dblval BR4 */
-#line 75 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{double* pProj_pos = yymsp[-6].minor.yy15->proj_pos; pProj_pos[0] = yymsp[-3].minor.yy102; pProj_pos[1] = yymsp[-2].minor.yy102; pProj_pos[2] = yymsp[-1].minor.yy102; yygotominor.yy15=yymsp[-6].minor.yy15;}
-#line 1128 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 76 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{double* pProj_pos = yymsp[-6].minor.yy3->proj_pos; pProj_pos[0] = yymsp[-3].minor.yy116; pProj_pos[1] = yymsp[-2].minor.yy116; pProj_pos[2] = yymsp[-1].minor.yy116; yygotominor.yy3=yymsp[-6].minor.yy3;}
+#line 1125 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 33: /* matparamexpr2 ::= matparamexpr2 TAG_proj_scale BR3 dblval dblval dblval BR4 */
-#line 76 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{double* pProj_scale = yymsp[-6].minor.yy15->proj_scale; pProj_scale[0] = yymsp[-3].minor.yy102; pProj_scale[1] = yymsp[-2].minor.yy102; pProj_scale[2] = yymsp[-1].minor.yy102; yygotominor.yy15=yymsp[-6].minor.yy15;}
-#line 1133 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 77 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{double* pProj_scale = yymsp[-6].minor.yy3->proj_scale; pProj_scale[0] = yymsp[-3].minor.yy116; pProj_scale[1] = yymsp[-2].minor.yy116; pProj_scale[2] = yymsp[-1].minor.yy116; yygotominor.yy3=yymsp[-6].minor.yy3;}
+#line 1130 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 34: /* matparamexpr2 ::= matparamexpr2 TAG_proj_angle BR3 dblval dblval dblval BR4 */
-#line 77 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{double* pProj_angle = yymsp[-6].minor.yy15->proj_angle; pProj_angle[0] = yymsp[-3].minor.yy102; pProj_angle[1] = yymsp[-2].minor.yy102; pProj_angle[2] = yymsp[-1].minor.yy102; yygotominor.yy15=yymsp[-6].minor.yy15;}
-#line 1138 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 78 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{double* pProj_angle = yymsp[-6].minor.yy3->proj_angle; pProj_angle[0] = yymsp[-3].minor.yy116; pProj_angle[1] = yymsp[-2].minor.yy116; pProj_angle[2] = yymsp[-1].minor.yy116; yygotominor.yy3=yymsp[-6].minor.yy3;}
+#line 1135 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 35: /* matparamexpr2 ::= */
-#line 78 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy15 = new CMYMaterial();}
-#line 1143 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 79 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy3 = new CMYMaterial();}
+#line 1140 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 36: /* objexpr ::= objexpr TAG_uid intval */
-#line 80 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; yygotominor.yy45->uid = yymsp[0].minor.yy130;}
-#line 1148 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 81 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; yygotominor.yy61->uid = yymsp[0].minor.yy12;}
+#line 1145 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 37: /* objexpr ::= objexpr TAG_depth intval */
-#line 81 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; yygotominor.yy45->depth = yymsp[0].minor.yy130;}
-#line 1153 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 82 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; yygotominor.yy61->depth = yymsp[0].minor.yy12;}
+#line 1150 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 38: /* objexpr ::= objexpr TAG_folding intval */
-#line 82 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; yygotominor.yy45->folding = yymsp[0].minor.yy130?true:false;}
-#line 1158 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 83 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; yygotominor.yy61->folding = yymsp[0].minor.yy12?true:false;}
+#line 1155 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 39: /* objexpr ::= objexpr TAG_scale dblval dblval dblval */
-#line 83 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-4].minor.yy45; yygotominor.yy45->scale[0] = yymsp[-2].minor.yy102; yygotominor.yy45->scale[1] = yymsp[-1].minor.yy102; yygotominor.yy45->scale[2] = yymsp[0].minor.yy102;}
-#line 1163 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 84 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-4].minor.yy61; yygotominor.yy61->scale[0] = yymsp[-2].minor.yy116; yygotominor.yy61->scale[1] = yymsp[-1].minor.yy116; yygotominor.yy61->scale[2] = yymsp[0].minor.yy116;}
+#line 1160 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 40: /* objexpr ::= objexpr TAG_rotation dblval dblval dblval */
-#line 84 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-4].minor.yy45; yygotominor.yy45->rotation[0] = yymsp[-2].minor.yy102; yygotominor.yy45->rotation[1] = yymsp[-1].minor.yy102; yygotominor.yy45->rotation[2] = yymsp[0].minor.yy102;}
-#line 1168 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 85 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-4].minor.yy61; yygotominor.yy61->rotation[0] = yymsp[-2].minor.yy116; yygotominor.yy61->rotation[1] = yymsp[-1].minor.yy116; yygotominor.yy61->rotation[2] = yymsp[0].minor.yy116;}
+#line 1165 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 41: /* objexpr ::= objexpr TAG_translation dblval dblval dblval */
-#line 85 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-4].minor.yy45; yygotominor.yy45->translation[0] = yymsp[-2].minor.yy102; yygotominor.yy45->translation[1] = yymsp[-1].minor.yy102; yygotominor.yy45->translation[2] = yymsp[0].minor.yy102;}
-#line 1173 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 86 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-4].minor.yy61; yygotominor.yy61->translation[0] = yymsp[-2].minor.yy116; yygotominor.yy61->translation[1] = yymsp[-1].minor.yy116; yygotominor.yy61->translation[2] = yymsp[0].minor.yy116;}
+#line 1170 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 42: /* objexpr ::= objexpr TAG_patch intval */
-#line 86 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->patch = C;*/}
-#line 1178 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 87 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->patch = C;*/}
+#line 1175 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 43: /* objexpr ::= objexpr TAG_patchtri intval */
-#line 87 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->patchtri = C;*/}
-#line 1183 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 88 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->patchtri = C;*/}
+#line 1180 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 44: /* objexpr ::= objexpr TAG_segment intval */
-#line 88 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->segment = C;*/}
-#line 1188 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 89 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->segment = C;*/}
+#line 1185 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 45: /* objexpr ::= objexpr TAG_visible intval */
-#line 89 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->visible = C;*/}
-#line 1193 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 90 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->visible = C;*/}
+#line 1190 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 46: /* objexpr ::= objexpr TAG_locking intval */
-#line 90 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->locking = C;*/}
-#line 1198 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 91 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->locking = C;*/}
+#line 1195 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 47: /* objexpr ::= objexpr TAG_shading intval */
-#line 91 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; yygotominor.yy45->shading = (CMYObject::SHADING)yymsp[0].minor.yy130;}
-#line 1203 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 92 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; yygotominor.yy61->shading = (CMYObject::SHADING)yymsp[0].minor.yy12;}
+#line 1200 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 48: /* objexpr ::= objexpr TAG_facet dblval */
-#line 92 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->facet = C;*/}
-#line 1208 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 93 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->facet = C;*/}
+#line 1205 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 49: /* objexpr ::= objexpr TAG_color dblval dblval dblval */
-#line 93 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-4].minor.yy45; yygotominor.yy45->color[0] = yymsp[-2].minor.yy102; yygotominor.yy45->color[1] = yymsp[-1].minor.yy102; yygotominor.yy45->color[2] = yymsp[0].minor.yy102;}
-#line 1213 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 94 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-4].minor.yy61; yygotominor.yy61->color[0] = yymsp[-2].minor.yy116; yygotominor.yy61->color[1] = yymsp[-1].minor.yy116; yygotominor.yy61->color[2] = yymsp[0].minor.yy116;}
+#line 1210 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 50: /* objexpr ::= objexpr TAG_color_type intval */
-#line 94 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; yygotominor.yy45->color_type = yymsp[0].minor.yy130?true:false;}
-#line 1218 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 95 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; yygotominor.yy61->color_type = yymsp[0].minor.yy12?true:false;}
+#line 1215 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 51: /* objexpr ::= objexpr TAG_mirror intval */
-#line 95 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->mirror = (CMYObject::MIRROR)C;*/}
-#line 1223 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 96 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->mirror = (CMYObject::MIRROR)C;*/}
+#line 1220 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 52: /* objexpr ::= objexpr TAG_mirror_axis intval */
-#line 96 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->mirror_axis = (CMYObject::MIRRORAXIS)C;*/}
-#line 1228 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 97 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->mirror_axis = (CMYObject::MIRRORAXIS)C;*/}
+#line 1225 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 53: /* objexpr ::= objexpr TAG_mirror_dis dblval */
-#line 97 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->mirror_dis = C;*/}
-#line 1233 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 98 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->mirror_dis = C;*/}
+#line 1230 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 54: /* objexpr ::= objexpr TAG_lathe intval */
-#line 98 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->lathe = C?true:false;*/}
-#line 1238 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 99 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->lathe = C?true:false;*/}
+#line 1235 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 55: /* objexpr ::= objexpr TAG_lathe_axis intval */
-#line 99 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->lathe_axis = (CMYObject::LATHEAXIS)C;*/}
-#line 1243 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 100 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->lathe_axis = (CMYObject::LATHEAXIS)C;*/}
+#line 1240 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 56: /* objexpr ::= objexpr TAG_lathe_seg intval */
-#line 100 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-2].minor.yy45; /*yygotominor.yy45->lathe_seg = C;*/}
-#line 1248 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 101 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-2].minor.yy61; /*yygotominor.yy61->lathe_seg = C;*/}
+#line 1245 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 57: /* objexpr ::= objexpr TAG_vertex intval BR1 vertexexpr BR2 */
-#line 101 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-5].minor.yy45; yygotominor.yy45->vertex = yymsp[-1].minor.yy179;}
-#line 1253 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
-        break;
-      case 58: /* objexpr ::= objexpr TAG_vertexattr BR1 vertexattrexpr BR2 */
 #line 102 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-4].minor.yy45; }
-#line 1258 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy61=yymsp[-5].minor.yy61; yygotominor.yy61->vertex = yymsp[-1].minor.yy17;}
+#line 1250 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+        break;
+      case 58: /* objexpr ::= objexpr TAG_vertexattr BR1 vertexattrexpr2 BR2 */
+#line 103 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-4].minor.yy61; yygotominor.yy61->vertexattrUID = yymsp[-1].minor.yy31->uid;}
+#line 1255 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 59: /* objexpr ::= objexpr TAG_face intval BR1 faceexpr BR2 */
-#line 104 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45=yymsp[-5].minor.yy45; yygotominor.yy45->face = yymsp[-1].minor.yy54;}
-#line 1263 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 105 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61=yymsp[-5].minor.yy61; yygotominor.yy61->face = yymsp[-1].minor.yy8;}
+#line 1260 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 60: /* objexpr ::= */
-#line 105 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy45 = new CMYObject();}
-#line 1268 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 106 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy61 = new CMYObject();}
+#line 1265 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 61: /* vertexexpr ::= vertexexpr dblval dblval dblval */
-#line 107 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy179=yymsp[-3].minor.yy179; yygotominor.yy179->Add(new CMYVertex(yymsp[-2].minor.yy102,yymsp[-1].minor.yy102,yymsp[0].minor.yy102)); }
-#line 1273 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 108 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy17=yymsp[-3].minor.yy17; yygotominor.yy17->Add(new CMYVertex(yymsp[-2].minor.yy116,yymsp[-1].minor.yy116,yymsp[0].minor.yy116)); }
+#line 1270 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       case 62: /* vertexexpr ::= */
-#line 108 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy179 = new CAtlArray<CMYVertex*>();}
-#line 1278 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 109 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy17 = new CAtlArray<CMYVertex*>();}
+#line 1275 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 76: /* faceexpr ::= faceexpr intval faceattrexpr */
+      case 63: /* vertexattrexpr2 ::= vertexattrexpr2 TAG_uid BR1 intarr BR2 */
+#line 111 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy31=yymsp[-4].minor.yy31; yygotominor.yy31->uid = yymsp[-1].minor.yy13;}
+#line 1280 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+        break;
+      case 64: /* vertexattrexpr2 ::= vertexattrexpr2 TAG_weit BR1 weitexpr BR2 */
+      case 65: /* vertexattrexpr2 ::= vertexattrexpr2 TAG_color BR1 colorexpr BR2 */ yytestcase(yyruleno==65);
+#line 112 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy31=yymsp[-4].minor.yy31;}
+#line 1286 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+        break;
+      case 66: /* vertexattrexpr2 ::= */
+#line 114 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy31 = new __CMyVertexAttr();}
+#line 1291 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+        break;
+      case 73: /* faceexpr ::= faceexpr intval faceattrexpr */
+#line 125 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy8=yymsp[-2].minor.yy8; yygotominor.yy8->Add(yymsp[0].minor.yy145);}
+#line 1296 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+        break;
+      case 74: /* faceexpr ::= */
+#line 126 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy8 = new CAtlArray<CMYFace*>();}
+#line 1301 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+        break;
+      case 75: /* faceattrexpr ::= faceattrexpr TAG_V BR3 uintarr BR4 */
 #line 128 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy54=yymsp[-2].minor.yy54; yygotominor.yy54->Add(yymsp[0].minor.yy37);}
-#line 1283 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy145=yymsp[-4].minor.yy145; yygotominor.yy145->V = yymsp[-1].minor.yy164;}
+#line 1306 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 77: /* faceexpr ::= */
+      case 76: /* faceattrexpr ::= faceattrexpr TAG_M BR3 intval BR4 */
 #line 129 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy54 = new CAtlArray<CMYFace*>();}
-#line 1288 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy145=yymsp[-4].minor.yy145; yygotominor.yy145->M = yymsp[-1].minor.yy12;}
+#line 1311 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 78: /* faceattrexpr ::= faceattrexpr TAG_V BR3 uintarr BR4 */
+      case 77: /* faceattrexpr ::= faceattrexpr TAG_UID BR3 intval BR4 */
+#line 130 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy145=yymsp[-4].minor.yy145; /*yygotominor.yy145->UID = C;*/}
+#line 1316 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+        break;
+      case 78: /* faceattrexpr ::= faceattrexpr TAG_UV BR3 dblarr BR4 */
 #line 131 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy37=yymsp[-4].minor.yy37; yygotominor.yy37->V = yymsp[-1].minor.yy84;}
-#line 1293 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy145=yymsp[-4].minor.yy145; yygotominor.yy145->UV = yymsp[-1].minor.yy29;}
+#line 1321 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 79: /* faceattrexpr ::= faceattrexpr TAG_M BR3 intval BR4 */
+      case 79: /* faceattrexpr ::= faceattrexpr TAG_COL BR3 colorrefarr BR4 */
 #line 132 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy37=yymsp[-4].minor.yy37; yygotominor.yy37->M = yymsp[-1].minor.yy130;}
-#line 1298 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy145=yymsp[-4].minor.yy145; yygotominor.yy145->COL = yymsp[-1].minor.yy56;}
+#line 1326 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 80: /* faceattrexpr ::= faceattrexpr TAG_UID BR3 intval BR4 */
+      case 80: /* faceattrexpr ::= faceattrexpr TAG_CRS BR3 dblarr BR4 */
 #line 133 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy37=yymsp[-4].minor.yy37; /*yygotominor.yy37->UID = C;*/}
-#line 1303 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy145=yymsp[-4].minor.yy145; /*yygotominor.yy145->CRS = C;*/}
+#line 1331 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 81: /* faceattrexpr ::= faceattrexpr TAG_UV BR3 dblarr BR4 */
+      case 81: /* faceattrexpr ::= */
 #line 134 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy37=yymsp[-4].minor.yy37; yygotominor.yy37->UV = yymsp[-1].minor.yy163;}
-#line 1308 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy145 = new CMYFace();}
+#line 1336 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 82: /* faceattrexpr ::= faceattrexpr TAG_COL BR3 colorrefarr BR4 */
-#line 135 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy37=yymsp[-4].minor.yy37; yygotominor.yy37->COL = yymsp[-1].minor.yy98;}
-#line 1313 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
-        break;
-      case 83: /* faceattrexpr ::= faceattrexpr TAG_CRS BR3 dblarr BR4 */
+      case 82: /* uintarr ::= uintarr intval */
 #line 136 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy37=yymsp[-4].minor.yy37; /*yygotominor.yy37->CRS = C;*/}
-#line 1318 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy164=yymsp[-1].minor.yy164; yygotominor.yy164->Add((uint)yymsp[0].minor.yy12);}
+#line 1341 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 84: /* faceattrexpr ::= */
+      case 83: /* uintarr ::= */
 #line 137 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy37 = new CMYFace();}
-#line 1323 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy164 = new CAtlArray<uint>();}
+#line 1346 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 85: /* uintarr ::= uintarr intval */
+      case 84: /* colorrefarr ::= colorrefarr intval */
 #line 139 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy84=yymsp[-1].minor.yy84; yygotominor.yy84->Add((uint)yymsp[0].minor.yy130);}
-#line 1328 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy56=yymsp[-1].minor.yy56; yygotominor.yy56->Add((COLORREF)yymsp[0].minor.yy12);}
+#line 1351 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 86: /* uintarr ::= */
+      case 85: /* colorrefarr ::= */
 #line 140 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy84 = new CAtlArray<uint>();}
-#line 1333 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy56 = new CAtlArray<COLORREF>();}
+#line 1356 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 87: /* colorrefarr ::= colorrefarr intval */
+      case 86: /* intarr ::= intarr intval */
 #line 142 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy98=yymsp[-1].minor.yy98; yygotominor.yy98->Add((COLORREF)yymsp[0].minor.yy130);}
-#line 1338 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy13=yymsp[-1].minor.yy13; yygotominor.yy13->Add(yymsp[0].minor.yy12);}
+#line 1361 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 88: /* colorrefarr ::= */
+      case 87: /* intarr ::= */
 #line 143 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy98 = new CAtlArray<COLORREF>();}
-#line 1343 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+{yygotominor.yy13 = new CAtlArray<int>();}
+#line 1366 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 89: /* dblarr ::= dblarr dblval */
-#line 148 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy163=yymsp[-1].minor.yy163; yygotominor.yy163->Add(yymsp[0].minor.yy102);}
-#line 1348 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+      case 88: /* dblarr ::= dblarr dblval */
+#line 145 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy29=yymsp[-1].minor.yy29; yygotominor.yy29->Add(yymsp[0].minor.yy116);}
+#line 1371 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
-      case 90: /* dblarr ::= */
-#line 149 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
-{yygotominor.yy163 = new CAtlArray<double>();}
-#line 1353 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+      case 89: /* dblarr ::= */
+#line 146 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+{yygotominor.yy29 = new CAtlArray<double>();}
+#line 1376 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
         break;
       default:
       /* (0) program ::= expr3 */ yytestcase(yyruleno==0);
@@ -1358,19 +1381,12 @@ static void yy_reduce(
       /* (5) expr ::= */ yytestcase(yyruleno==5);
       /* (10) matexpr ::= matexpr matexpr2 */ yytestcase(yyruleno==10);
       /* (11) matexpr ::= */ yytestcase(yyruleno==11);
-      /* (63) vertexattrexpr ::= vertexattrexpr vertexattrexpr2 */ yytestcase(yyruleno==63);
-      /* (64) vertexattrexpr ::= */ yytestcase(yyruleno==64);
-      /* (65) vertexattrexpr2 ::= TAG_uid BR1 uidexpr BR2 */ yytestcase(yyruleno==65);
-      /* (66) vertexattrexpr2 ::= TAG_weit BR1 weitexpr BR2 */ yytestcase(yyruleno==66);
-      /* (67) vertexattrexpr2 ::= TAG_color BR1 colorexpr BR2 */ yytestcase(yyruleno==67);
-      /* (68) uidexpr ::= uidexpr intval */ yytestcase(yyruleno==68);
-      /* (69) uidexpr ::= */ yytestcase(yyruleno==69);
-      /* (70) weitexpr ::= weitexpr weitexpr2 */ yytestcase(yyruleno==70);
-      /* (71) weitexpr ::= */ yytestcase(yyruleno==71);
-      /* (72) weitexpr2 ::= intval dblval */ yytestcase(yyruleno==72);
-      /* (73) colorexpr ::= colorexpr colorexpr2 */ yytestcase(yyruleno==73);
-      /* (74) colorexpr ::= */ yytestcase(yyruleno==74);
-      /* (75) colorexpr2 ::= intval intval */ yytestcase(yyruleno==75);
+      /* (67) weitexpr ::= weitexpr weitexpr2 */ yytestcase(yyruleno==67);
+      /* (68) weitexpr ::= */ yytestcase(yyruleno==68);
+      /* (69) weitexpr2 ::= intval dblval */ yytestcase(yyruleno==69);
+      /* (70) colorexpr ::= colorexpr colorexpr2 */ yytestcase(yyruleno==70);
+      /* (71) colorexpr ::= */ yytestcase(yyruleno==71);
+      /* (72) colorexpr2 ::= intval intval */ yytestcase(yyruleno==72);
         break;
   };
   yygoto = yyRuleInfo[yyruleno].lhs;
@@ -1430,10 +1446,10 @@ static void yy_syntax_error(
 ){
   ParseARG_FETCH;
 #define TOKEN (yyminor.yy0)
-#line 29 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
+#line 30 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.lemon"
 
   ATLTRACE(_T("Syntax Error!\n"));
-#line 1437 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
+#line 1453 "C:\\Projects\\MQO2FBX\\MQO2FBX\\MQOParser.c"
   ParseARG_STORE; /* Suppress warning about unused %extra_argument variable */
 }
 

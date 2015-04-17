@@ -461,7 +461,7 @@ HRESULT LoadFromFile(LPCTSTR path)
       CMYBone &bone = mqo->m_bones[i];
       if(bone.parent)continue;
       FbxSkeleton* lSkeletonAttribute2 = FbxSkeleton::Create(pScene, CW2A(CString(L"Skelton")+bone.name, CP_UTF8));
-      lSkeletonAttribute2->SetSkeletonType(FbxSkeleton::eRoot);
+      lSkeletonAttribute2->SetSkeletonType(FbxSkeleton::eLimbNode);
       FbxNode* lSkeleton2 = FbxNode::Create(pScene, CW2A(CString(L"Skelton")+bone.name, CP_UTF8));
       lSkeleton2->SetNodeAttribute(lSkeletonAttribute2);    
       lSkeleton2->LclTranslation.Set(FbxDouble3(bone.rtX, bone.rtY, bone.rtZ));
