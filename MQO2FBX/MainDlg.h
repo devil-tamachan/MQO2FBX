@@ -530,14 +530,17 @@ HRESULT LoadFromFile(LPCTSTR path)
         CMYFace *f = (*faces)[i];
         lMesh->BeginPolygon(f->M);
         CAtlArray<uint> &V = *(f->V);
-        int Vmax = V.GetCount();
+        size_t Vmax = V.GetCount();
         CAtlArray<double> *pUV = (f->UV);
         ATLASSERT(!pUV || Vmax*2 == pUV->GetCount());
 
-        for(int j = Vmax-1; j >= 0; j--)
+        if(Vmax>=1)
         {
-          lMesh->AddPolygon(V[j]);
-          lUVDiffuseElement->GetIndexArray().Add(pUV ? lUVDiffuseElement->GetDirectArray().Add(FbxVector2( ((*pUV)[j*2]), 1.0-((*pUV)[j*2+1]) )) : 0 );
+          for(size_t j = Vmax-1; j != SIZE_MAX; j--)
+          {
+            lMesh->AddPolygon(V[j]);
+            lUVDiffuseElement->GetIndexArray().Add(pUV ? lUVDiffuseElement->GetDirectArray().Add(FbxVector2( ((*pUV)[j*2]), 1.0-((*pUV)[j*2+1]) )) : 0 );
+          }
         }
 
         lMesh->EndPolygon();
@@ -568,6 +571,17 @@ HRESULT LoadFromFile(LPCTSTR path)
     }
     return 0;
   }
+  size_t _ConvertVIDtoVIdx(CAtlArray<int> *pVertexAttrUID, int vid)
+  {
+    if(pVertexAttrUID==NULL)return vid-1;
+    CAtlArray<int> &vertexAttrUID = *pVertexAttrUID;
+    size_t vidMax = pVertexAttrUID->GetCount();
+    for(size_t i=0;i<vidMax; i++)
+    {
+      if(vertexAttrUID[i]==vid)return i;
+    }
+    return 0;
+  }
 
   HRESULT CreateWeight(FbxManager *pSdkManager, FbxScene* pScene, CMYMQO *mqo)
   {
@@ -587,28 +601,33 @@ HRESULT LoadFromFile(LPCTSTR path)
       for(int j=0;j<objCnt;j++)clu.Add(NULL);
 
       ATLASSERT(bone.vi.GetCount() == bone.oi.GetCount() && bone.vi.GetCount() == bone.w.GetCount());
-      int len = bone.vi.GetCount();
-      for(int j=0;j<len;j++)
+      size_t len = bone.vi.GetCount();
+      for(size_t j=0;j<len;j++)
       {
-        int oi = bone.oi[j];
+        size_t oi = bone.oi[j];
         int objIndex = _SearchObjIndex(mqo->m_objects, oi);
         ATLASSERT(objIndex>=1);
+        CMYObject *curObj = mqo->m_objects[objIndex-1];
         FbxSkin *pSkin = skins[objIndex];
         if(pSkin==NULL)
         {
-          pSkin = FbxSkin::Create(pScene, "");
+          pSkin = FbxSkin::Create(pScene, CW2A(CString(L"Skin")+curObj->name, CP_UTF8));
           skins[objIndex] = pSkin;
         }
 
         FbxCluster *pCluster = clu[objIndex];
         if(pCluster==NULL)
         {
-          pCluster = FbxCluster::Create(pScene,"");
+          CString cluName(L"Cluster");
+          cluName += curObj->name;
+          cluName.AppendFormat(L"%d",i);
+          pCluster = FbxCluster::Create(pScene,CW2A(cluName, CP_UTF8));
           pCluster->SetLink(bone.fbxNode);
           pCluster->SetLinkMode(FbxCluster::eTotalOne);
           clu[objIndex] = pCluster;
         }
-        pCluster->AddControlPointIndex(bone.vi[j]-1, bone.w[j]/100.0);
+        size_t vidx = _ConvertVIDtoVIdx(curObj->vertexattrUID, bone.vi[j]);
+        pCluster->AddControlPointIndex(vidx, bone.w[j]/100.0);
       }
       for(int j=1;j<=objCnt;j++)
       {

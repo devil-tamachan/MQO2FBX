@@ -96,22 +96,29 @@ public:
 class CMYObject
 {
 public:
-  CMYObject() : vertex(NULL), face(NULL), pFbxNode(NULL)
+  CMYObject() : vertex(NULL), face(NULL), pFbxNode(NULL), vertexattrUID(NULL)
   {
   }
   ~CMYObject()
   {
     if(vertex)
     {
-      int m=vertex->GetCount();;
-      for(int i=0;i<m;i++)delete (*vertex)[i];
+      size_t m=vertex->GetCount();;
+      for(size_t i=0;i<m;i++)delete (*vertex)[i];
+	  delete vertex;
       vertex = NULL;
     }
     if(face)
     {
-      int m=face->GetCount();;
-      for(int i=0;i<m;i++)delete (*face)[i];
+      size_t m=face->GetCount();;
+      for(size_t i=0;i<m;i++)delete (*face)[i];
+	  delete face;
       face = NULL;
+    }
+    if(vertexattrUID)
+    {
+	  delete vertexattrUID;
+      vertexattrUID = NULL;
     }
   }
   FbxNode *pFbxNode;
@@ -139,6 +146,7 @@ public:
   //int lathe_seg;
   CAtlArray<CMYVertex*> *vertex;
   CAtlArray<CMYFace*> *face;
+  CAtlArray<int> *vertexattrUID;
 };
 
 class CMYBone
@@ -229,6 +237,15 @@ public:
     }
     return NULL;
   }
+};
+
+class __CMyVertexAttr
+{
+public:
+  __CMyVertexAttr() : uid(NULL)
+  {
+  }
+  CAtlArray<int> *uid;
 };
 
 typedef struct PassData

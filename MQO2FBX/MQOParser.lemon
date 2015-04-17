@@ -18,6 +18,7 @@
 %type colorrefarr {CAtlArray<COLORREF>*}
 %type intarr {CAtlArray<int>*}
 %type dblarr {CAtlArray<double>*}
+%type vertexattrexpr2 {__CMyVertexAttr*}
 
 %extra_argument { CMYMQO *pMqo }
 
@@ -99,7 +100,7 @@ objexpr(A) ::= objexpr(B) TAG_lathe intval. {A=B; /*A->lathe = C?true:false;*/}
 objexpr(A) ::= objexpr(B) TAG_lathe_axis intval. {A=B; /*A->lathe_axis = (CMYObject::LATHEAXIS)C;*/}
 objexpr(A) ::= objexpr(B) TAG_lathe_seg intval. {A=B; /*A->lathe_seg = C;*/}
 objexpr(A) ::= objexpr(B) TAG_vertex intval BR1 vertexexpr(D) BR2. {A=B; A->vertex = D;}
-objexpr(A) ::= objexpr(B) TAG_vertexattr BR1 vertexattrexpr BR2. {A=B; }
+objexpr(A) ::= objexpr(B) TAG_vertexattr BR1 vertexattrexpr2(C) BR2. {A=B; A->vertexattrUID = C->uid;}
 //objexpr(A) ::= objexpr(B) TAG_bvertex intval BR1 bvertexexpr BR2. {A=B; }
 objexpr(A) ::= objexpr(B) TAG_face intval BR1 faceexpr(D) BR2. {A=B; A->face = D;}
 objexpr(A) ::= . {A = new CMYObject();}
@@ -107,14 +108,10 @@ objexpr(A) ::= . {A = new CMYObject();}
 vertexexpr(A) ::= vertexexpr(B) dblval(C) dblval(D) dblval(E). {A=B; A->Add(new CMYVertex(C,D,E)); }
 vertexexpr(A) ::= . {A = new CAtlArray<CMYVertex*>();}
 
-vertexattrexpr ::= vertexattrexpr vertexattrexpr2. 
-vertexattrexpr ::= . 
-vertexattrexpr2 ::= TAG_uid BR1 uidexpr BR2.
-vertexattrexpr2 ::= TAG_weit BR1 weitexpr BR2.
-vertexattrexpr2 ::= TAG_color BR1 colorexpr BR2.
-
-uidexpr ::= uidexpr intval. 
-uidexpr ::= . 
+vertexattrexpr2(A) ::= vertexattrexpr2(B) TAG_uid BR1 intarr(C) BR2. {A=B; A->uid = C;}
+vertexattrexpr2(A) ::= vertexattrexpr2(B) TAG_weit BR1 weitexpr BR2. {A=B;}
+vertexattrexpr2(A) ::= vertexattrexpr2(B) TAG_color BR1 colorexpr BR2. {A=B;}
+vertexattrexpr2(A) ::= . {A = new __CMyVertexAttr();}
 
 weitexpr ::= weitexpr weitexpr2. 
 weitexpr ::= . 
@@ -142,8 +139,8 @@ uintarr(A) ::= . {A = new CAtlArray<uint>();}
 colorrefarr(A) ::= colorrefarr(B) intval(C). {A=B; A->Add((COLORREF)C);}
 colorrefarr(A) ::= . {A = new CAtlArray<COLORREF>();}
 
-//intarr(A) ::= intarr(B) intval(C). {A=B; A->Add(C);}
-//intarr(A) ::= . {A = new CAtlArray<int>();}
+intarr(A) ::= intarr(B) intval(C). {A=B; A->Add(C);}
+intarr(A) ::= . {A = new CAtlArray<int>();}
 
 dblarr(A) ::= dblarr(B) dblval(C). {A=B; A->Add(C);}
 dblarr(A) ::= . {A = new CAtlArray<double>();}
