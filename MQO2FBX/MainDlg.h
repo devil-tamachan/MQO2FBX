@@ -445,7 +445,6 @@ HRESULT LoadFromFile(LPCTSTR path)
   }
   HRESULT CreateSkelton(FbxManager *pSdkManager, FbxScene* pScene, CMYMQO *mqo)
   {
-    /*
     FbxSkeleton* lSkeletonAttribute = FbxSkeleton::Create(pScene, CW2A(CString(L"SkeltonRoot"), CP_UTF8));
     lSkeletonAttribute->SetSkeletonType(FbxSkeleton::eRoot);
     FbxNode* lSkeleton = FbxNode::Create(pScene, CW2A(CString(L"SkeltonRoot"), CP_UTF8));
@@ -453,9 +452,8 @@ HRESULT LoadFromFile(LPCTSTR path)
     lSkeleton->LclTranslation.Set(FbxVector4(0.0, 0.0, 0.0));
     lSkeleton->LclRotation.Set(FbxDouble3(0.0,0.0,0.0));
     lSkeleton->LclScaling.Set(FbxDouble3(1.0,1.0,1.0));
-    */
     FbxNode* lRootNode = pScene->GetRootNode();
-    //lRootNode->AddChild(lSkeleton);
+    lRootNode->AddChild(lSkeleton);
 
     int m = mqo->m_bones.GetCount();
     for(int i=0;i<m;i++)
@@ -469,7 +467,7 @@ HRESULT LoadFromFile(LPCTSTR path)
       lSkeleton2->LclTranslation.Set(FbxDouble3(bone.rtX, bone.rtY, bone.rtZ));
       bone.fbxNode = lSkeleton2;
       __CreateChildSkelton(pSdkManager, pScene, mqo, bone, lSkeleton2);
-      lRootNode->AddChild(lSkeleton2);
+      lSkeleton->AddChild(lSkeleton2);
     }
     return S_OK;
   }
