@@ -86,11 +86,16 @@ objexpr(A) ::= objexpr(B) TAG_rotation dblval(C) dblval(D) dblval(E). {A=B; A->r
 objexpr(A) ::= objexpr(B) TAG_translation dblval(C) dblval(D) dblval(E). {A=B; A->translation[0] = C; A->translation[1] = D; A->translation[2] = E;}
 objexpr(A) ::= objexpr(B) TAG_patch intval. {A=B; /*A->patch = C;*/}
 objexpr(A) ::= objexpr(B) TAG_patchtri intval. {A=B; /*A->patchtri = C;*/}
+objexpr(A) ::= objexpr(B) TAG_patchsmoothtri intval. {A=B; /*A->patchsmoothtri = C;*/}
+objexpr(A) ::= objexpr(B) TAG_patchlimitsurface intval. {A=B; /*A->patchlimitsurface = C;*/}
+objexpr(A) ::= objexpr(B) TAG_patchmeshinterp intval. {A=B; /*A->patchmeshinterp = C;*/}
+objexpr(A) ::= objexpr(B) TAG_patchuvinterp intval. {A=B; /*A->patchuvinterp = C;*/}
 objexpr(A) ::= objexpr(B) TAG_segment intval. {A=B; /*A->segment = C;*/}
-objexpr(A) ::= objexpr(B) TAG_visible intval. {A=B; /*A->visible = C;*/}
+objexpr(A) ::= objexpr(B) TAG_visible intval(C). {A=B; A->visible = C!=0;}
 objexpr(A) ::= objexpr(B) TAG_locking intval. {A=B; /*A->locking = C;*/}
 objexpr(A) ::= objexpr(B) TAG_shading intval(C). {A=B; A->shading = (CMYObject::SHADING)C;}
 objexpr(A) ::= objexpr(B) TAG_facet dblval. {A=B; /*A->facet = C;*/}
+objexpr(A) ::= objexpr(B) TAG_normal_weight dblval. {A=B; /*A->normal_weight = C;*/}
 objexpr(A) ::= objexpr(B) TAG_color dblval(C) dblval(D) dblval(E). {A=B; A->color[0] = C; A->color[1] = D; A->color[2] = E;}
 objexpr(A) ::= objexpr(B) TAG_color_type intval(C). {A=B; A->color_type = C?true:false;}
 objexpr(A) ::= objexpr(B) TAG_mirror intval. {A=B; /*A->mirror = (CMYObject::MIRROR)C;*/}
@@ -131,6 +136,7 @@ faceattrexpr(A) ::= faceattrexpr(B) TAG_UID BR3 intval BR4. {A=B; /*A->UID = C;*
 faceattrexpr(A) ::= faceattrexpr(B) TAG_UV BR3 dblarr(C) BR4. {A=B; A->UV = C;}
 faceattrexpr(A) ::= faceattrexpr(B) TAG_COL BR3 colorrefarr(C) BR4. {A=B; A->COL = C;}
 faceattrexpr(A) ::= faceattrexpr(B) TAG_CRS BR3 dblarr BR4. {A=B; /*A->CRS = C;*/}
+faceattrexpr(A) ::= faceattrexpr(B) TAG_N BR3 dblarr BR4. {A=B; /*A->N = C;*/}
 faceattrexpr(A) ::= . {A = new CMYFace();}
 
 uintarr(A) ::= uintarr(B) intval(C). {A=B; A->Add((uint)C);}

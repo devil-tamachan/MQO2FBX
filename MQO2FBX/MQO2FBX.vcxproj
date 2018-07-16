@@ -152,14 +152,15 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)MQOFBXParser.lemon;$(ProjectDir)MQOFBXParser.c;$(ProjectDir)MQOFBXParser.h</AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">tools\re2c.exe -i -o $(ProjectDir)MQO.cpp %(FullPath)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)MQO.cpp</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)MQOFBXParser.lemon;$(ProjectDir)MQOFBXParser.c;$(ProjectDir)MQOFBXParser.h</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)MQO.re;$(ProjectDir)MQOParser.lemon</AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="MQOParser.lemon">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">tools\\lemon.exe %(FullPath)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)MQOFBXParser..c;$(ProjectDir)MQOFBXParser..h;$(ProjectDir)MQOFBXParser..out</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">tools\\lemon.exe %(FullPath)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)MQOFBXParser..c;$(ProjectDir)MQOFBXParser..h;$(ProjectDir)MQOFBXParser..out</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)MQOParser.c;$(ProjectDir)MQOParser.h</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)MQO.re;$(ProjectDir)MQOParser.lemon;</AdditionalInputs>
     </CustomBuild>
     <None Include="res\MQO2FBX.ico" />
   </ItemGroup>

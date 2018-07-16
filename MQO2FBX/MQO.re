@@ -65,7 +65,7 @@ public:
 class CMYFace
 {
 public:
-  CMYFace() : M(0), V(NULL), UV(NULL), COL(NULL)
+  CMYFace() : M(0), V(NULL), UV(NULL), COL(NULL)/*, N(NULL)*/
   {
   }
   ~CMYFace()
@@ -85,11 +85,17 @@ public:
       delete COL;
       COL = NULL;
     }
+/*    if(N)
+    {
+      delete N;
+      N = NULL;
+    }*/
   }
   CAtlArray<uint> *V;
   int M;
   CAtlArray<double> *UV;
   CAtlArray<COLORREF> *COL;
+//  CAtlArray<double> *N;
 //  CAtlArray<double> *CRS;
 };
 
@@ -132,7 +138,7 @@ public:
   //enum {PATCH_PLANE=0, PATCH_SPLINE1, PATCH_SPLINE2, PATCH_CATMULLCLARK, PATCH_OPENSUBDIV} patch;
   //bool patchtri;
   //int segment;
-  //bool visible;
+  bool visible;
   //bool locking;
   enum SHADING {SHADING_FLAT=0, SHADING_GLOW} shading;
   //double facet;
@@ -152,7 +158,7 @@ public:
 class CMYBone
 {
   public:
-    CMYBone() : parent(NULL), id(0), P(0), rtX(0), rtY(0), rtZ(0), tpX(0), tpY(0), tpZ(0), rotB(0), rotH(0), rotP(0), mvX(0), mvY(0), mvZ(0), scX(0), scY(0), scZ(0), fbxNode(NULL)
+    CMYBone() : parent(NULL), id(0), P(0), rtX(0), rtY(0), rtZ(0), tpX(0), tpY(0), tpZ(0), rotB(0), rotH(0), rotP(0), mvX(0), mvY(0), mvZ(0), scX(0), scY(0), scZ(0), fbxNode(NULL), isDummy(false)
     {
     }
     ~CMYBone()
@@ -175,6 +181,8 @@ class CMYBone
     double rotB, rotH, rotP;
     double mvX, mvY, mvZ;
     double scX, scY, scZ;
+    
+    bool isDummy;
 };
 
 class CMYMQO
@@ -198,6 +206,19 @@ public:
       delete m_materials[i];
     }
     m_materials.RemoveAll();
+  }
+  
+  void VisibleObjOnly()
+  {
+    int s = m_objects.GetCount();
+    for(int i=s-1;i>=0;i--)
+    {
+      if(m_objects[i]->visible == false)
+      {
+        delete m_objects[i];
+        m_objects.RemoveAt(i);
+      }
+    }
   }
   
   CMYMaterial* GetCurrentMaterial()
@@ -268,7 +289,7 @@ typedef struct Scanner
 /*enum {
  TAG_MetasequoiaDocument, TAG_FormatTextVer11, TAG_Thumbnail, TAG_IncludeXml, TAG_Scene, TAG_pos, TAG_lookat, TAG_head, TAG_pich, TAG_bank, TAG_ortho, TAG_zoom2, TAG_amb, TAG_frontclip, TAG_backclip, TAG_dirlights, TAG_light, TAG_dir, TAG_color, 
  TAG_Material, TAG_shader, TAG_vcol, TAG_dbls, TAG_col, TAG_uid, TAG_dif, TAG_amb, TAG_emi, TAG_spc, TAG_power, TAG_reflect, TAG_refract, TAG_tex, TAG_aplane, TAG_bump, TAG_proj_type, TAG_proj_pos, TAG_proj_scale, TAG_proj_angle, 
- TAG_Object, TAG_depth, TAG_folding, TAG_scale, TAG_rotation, TAG_translation, TAG_patch, TAG_patchtri, TAG_segment, TAG_visible, TAG_locking, TAG_shading, TAG_facet, TAG_color, TAG_color_type, TAG_mirror, TAG_mirror_axis, TAG_mirror_dis, TAG_lathe, TAG_lathe_axis, TAG_lathe_seg, TAG_vertex, TAG_BVertex, TAG_vertexattr, TAG_weit, TAG_face, TAG_V, TAG_M, TAG_UID, TAG_UV, TAG_COL, TAG_CRS, TAG_Blob, 
+ TAG_Object, TAG_depth, TAG_folding, TAG_scale, TAG_rotation, TAG_translation, TAG_patch, TAG_patchtri, TAG_patchsmoothtri, TAG_patchlimitsurface, TAG_patchmeshinterp, TAG_patchuvinterp, TAG_segment, TAG_visible, TAG_locking, TAG_shading, TAG_facet, TAG_normal_weight, TAG_color, TAG_color_type, TAG_mirror, TAG_mirror_axis, TAG_mirror_dis, TAG_lathe, TAG_lathe_axis, TAG_lathe_seg, TAG_vertex, TAG_BVertex, TAG_vertexattr, TAG_weit, TAG_face, TAG_V, TAG_M, TAG_UID, TAG_UV, TAG_COL, TAG_N, TAG_CRS, TAG_Blob, 
  TAG_Eof};*/
 
 
@@ -365,11 +386,16 @@ ESC	= [\\] ([abfnrtv?'"\\] | "x" H+ | O+);
   "translation"	{ RET(TAG_translation); }
   "patch"	{ RET(TAG_patch); }
   "patchtri"	{ RET(TAG_patchtri); }
+  "patchsmoothtri"	{ RET(TAG_patchsmoothtri); }
+  "patchlimitsurface"	{ RET(TAG_patchlimitsurface); }
+  "patchmeshinterp"	{ RET(TAG_patchmeshinterp); }
+  "patchuvinterp"	{ RET(TAG_patchuvinterp); }
   "segment"	{ RET(TAG_segment); }
   "visible"	{ RET(TAG_visible); }
   "locking"	{ RET(TAG_locking); }
   "shading"	{ RET(TAG_shading); }
   "facet"	{ RET(TAG_facet); }
+  "normal_weight" { RET(TAG_normal_weight) }
   "color"	{ RET(TAG_color); }
   "color_type"	{ RET(TAG_color_type); }
   "mirror"	{ RET(TAG_mirror); }
@@ -388,6 +414,7 @@ ESC	= [\\] ([abfnrtv?'"\\] | "x" H+ | O+);
   "UID"	{ RET(TAG_UID); }
   "UV"	{ RET(TAG_UV); }
   "COL"	{ RET(TAG_COL); }
+  "N"	{ RET(TAG_N); }
   "CRS"	{ RET(TAG_CRS); }
   "Blob"	{ RET(TAG_Blob); }
   
@@ -411,7 +438,7 @@ ESC	= [\\] ([abfnrtv?'"\\] | "x" H+ | O+);
 				s->val.i = bMinus ? -_atoi64(tmp) : _atoi64(tmp);
 				RET(INTVAL); }
 	
-	(["] (ESC|any\[\n\\"])* ["])
+	(["] (ESC|any\[\n\"])* ["])
 				{ s->val.str = new CString(); *(s->val.str) = ReadStr(s->tok + 1, cursor - s->tok -2); RET(STRVAL); }
 	
 	"("			{ RET(BR3); }

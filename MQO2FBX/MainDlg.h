@@ -192,6 +192,8 @@ HRESULT LoadFromFile(LPCTSTR path)
   Parse(pParser, 0, s.val, &mqo);
   ParseFree(pParser, free);
   delete pFile;
+  
+  mqo.VisibleObjOnly();
 
   for(size_t i=0;i<mqo.m_materials.GetCount();i++)
   {
@@ -224,7 +226,10 @@ HRESULT LoadFromFile(LPCTSTR path)
   
   CPath fbxpath(path);
   fbxpath.RenameExtension(_T(".fbx"));
-  WriteFBX(fbxpath, &mqo);
+  
+  CPath fbxdir(fbxpath);
+  fbxdir.RemoveFileSpec();
+  WriteFBX(fbxpath, fbxdir, &mqo);
 
   return S_OK;
 }
@@ -246,50 +251,53 @@ HRESULT LoadFromFile(LPCTSTR path)
       CMYBone *pBone = mqo->AddBone(boneName);
 
       int bid=0;
-      if(Bone->QueryIntAttribute("id", &bid)==tinyxml2::XML_NO_ERROR)pBone->id = bid;
+      if(Bone->QueryIntAttribute("id", &bid)==tinyxml2::XML_SUCCESS)pBone->id = bid;
+      int isDummy=0;
+      if(Bone->QueryIntAttribute("isDummy", &bid)==tinyxml2::XML_SUCCESS)pBone->isDummy = isDummy!=0;
+      if(strstr(boneName, "_Dummy")>0)pBone->isDummy = 1;
 
       double dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("rtX", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->rtX = dTmp;
+      if(Bone->QueryDoubleAttribute("rtX", &dTmp)==tinyxml2::XML_SUCCESS)pBone->rtX = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("rtY", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->rtY = dTmp;
+      if(Bone->QueryDoubleAttribute("rtY", &dTmp)==tinyxml2::XML_SUCCESS)pBone->rtY = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("rtZ", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->rtZ = dTmp;
+      if(Bone->QueryDoubleAttribute("rtZ", &dTmp)==tinyxml2::XML_SUCCESS)pBone->rtZ = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("tpX", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->tpX = dTmp;
+      if(Bone->QueryDoubleAttribute("tpX", &dTmp)==tinyxml2::XML_SUCCESS)pBone->tpX = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("tpY", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->tpY = dTmp;
+      if(Bone->QueryDoubleAttribute("tpY", &dTmp)==tinyxml2::XML_SUCCESS)pBone->tpY = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("tpZ", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->tpZ = dTmp;
+      if(Bone->QueryDoubleAttribute("tpZ", &dTmp)==tinyxml2::XML_SUCCESS)pBone->tpZ = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("rotB", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->rotB = dTmp;
+      if(Bone->QueryDoubleAttribute("rotB", &dTmp)==tinyxml2::XML_SUCCESS)pBone->rotB = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("rotH", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->rotH = dTmp;
+      if(Bone->QueryDoubleAttribute("rotH", &dTmp)==tinyxml2::XML_SUCCESS)pBone->rotH = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("rotP", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->rotP = dTmp;
+      if(Bone->QueryDoubleAttribute("rotP", &dTmp)==tinyxml2::XML_SUCCESS)pBone->rotP = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("mvX", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->mvX = dTmp;
+      if(Bone->QueryDoubleAttribute("mvX", &dTmp)==tinyxml2::XML_SUCCESS)pBone->mvX = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("mvY", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->mvY = dTmp;
+      if(Bone->QueryDoubleAttribute("mvY", &dTmp)==tinyxml2::XML_SUCCESS)pBone->mvY = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("mvZ", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->mvZ = dTmp;
+      if(Bone->QueryDoubleAttribute("mvZ", &dTmp)==tinyxml2::XML_SUCCESS)pBone->mvZ = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("scX", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->scX = dTmp;
+      if(Bone->QueryDoubleAttribute("scX", &dTmp)==tinyxml2::XML_SUCCESS)pBone->scX = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("scY", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->scY = dTmp;
+      if(Bone->QueryDoubleAttribute("scY", &dTmp)==tinyxml2::XML_SUCCESS)pBone->scY = dTmp;
       dTmp=0.0;
-      if(Bone->QueryDoubleAttribute("scZ", &dTmp)==tinyxml2::XML_NO_ERROR)pBone->scZ = dTmp;
+      if(Bone->QueryDoubleAttribute("scZ", &dTmp)==tinyxml2::XML_SUCCESS)pBone->scZ = dTmp;
 
       tinyxml2::XMLElement* P = Bone->FirstChildElement("P");
       if(P!=NULL)
       {
         int id=0;
-        if(P->QueryIntAttribute("id", &id)==tinyxml2::XML_NO_ERROR)pBone->P = id;
+        if(P->QueryIntAttribute("id", &id)==tinyxml2::XML_SUCCESS)pBone->P = id;
       }
       for(tinyxml2::XMLElement* C = Bone->FirstChildElement("C"); C!=NULL; C = C->NextSiblingElement("C"))
       {
         int id=0;
-        if(C->QueryIntAttribute("id", &id)==tinyxml2::XML_NO_ERROR)pBone->C.Add(id);
+        if(C->QueryIntAttribute("id", &id)==tinyxml2::XML_SUCCESS)pBone->C.Add(id);
       }
 /*      for(tinyxml2::XMLElement* B = Bone->FirstChildElement("B"); B!=NULL; B = B->NextSiblingElement("B"))
       {
@@ -333,12 +341,14 @@ HRESULT LoadFromFile(LPCTSTR path)
       }
     }
   }
-  HRESULT WriteFBX(LPCTSTR pathfbx, CMYMQO *mqo)
+  HRESULT WriteFBX(LPCTSTR pathfbx, LPCTSTR fbxdir, CMYMQO *mqo)
   {
     FbxManager* pManager = NULL;
     FbxScene* lScene = NULL;
 
     InitializeSdkObjects(pManager, lScene);
+    
+    FbxSetCurrentWorkPath(CW2A(fbxdir, CP_UTF8));
 
     if(FAILED(CreateScene(pManager, lScene, mqo)))
     {
@@ -377,6 +387,26 @@ HRESULT LoadFromFile(LPCTSTR path)
 
     return S_OK;
   }
+  
+  void CreateDiffuseUVTexture(FbxScene* pScene, CMYMaterial *mat, FbxSurfaceLambert *lMaterial)
+  {
+    BOOL bRelativePath = PathIsRelative(mat->tex);
+    
+    FbxFileTexture* lTexture = FbxFileTexture::Create(pScene, CW2A(mat->tex, CP_UTF8));
+    
+    if(bRelativePath)lTexture->SetRelativeFileName(CW2A(mat->tex, CP_UTF8));
+    else             lTexture->SetFileName(CW2A(mat->tex, CP_UTF8));
+    lTexture->SetTextureUse(FbxTexture::eStandard);
+    lTexture->SetMappingType(FbxTexture::eUV);
+    lTexture->SetMaterialUse(FbxFileTexture::eModelMaterial);
+    lTexture->SetSwapUV(false);
+    lTexture->SetTranslation(0.0, 0.0);
+    lTexture->SetScale(1.0, 1.0);
+    lTexture->SetRotation(0.0, 0.0);
+
+    if(lMaterial)lMaterial->Diffuse.ConnectSrcObject(lTexture);
+  }
+  
   HRESULT CreateMaterial(FbxManager *pSdkManager, FbxScene* pScene, CMYMQO *mqo, CMYMaterial *mat, FbxNode* lMeshNode)
   {
     switch(mat->shader)
@@ -398,6 +428,7 @@ HRESULT LoadFromFile(LPCTSTR path)
         //lMaterial->SpecularFactor.Set(mat->spc);
         
         lMeshNode->AddMaterial(lMaterial);
+        if(mat->tex!=_T(""))CreateDiffuseUVTexture(pScene, mat, lMaterial);
       }
       break;
     case CMYMaterial::SHADER_Classic:
@@ -418,11 +449,13 @@ HRESULT LoadFromFile(LPCTSTR path)
         //lMaterial->SpecularFactor.Set(mat->spc);
         
         lMeshNode->AddMaterial(lMaterial);
+        if(mat->tex!=_T(""))CreateDiffuseUVTexture(pScene, mat, lMaterial);
       }
       break;
     case CMYMaterial::SHADER_Phong:
     case CMYMaterial::SHADER_Blinn:
     //case CMYMaterial::SHADER_PMD:
+    default:
       {
         FbxString lShadingName = "Phong";
         FbxSurfacePhong *lMaterial = FbxSurfacePhong::Create(pScene, CW2A(mat->name, CP_UTF8));
@@ -438,11 +471,23 @@ HRESULT LoadFromFile(LPCTSTR path)
 
         
         lMeshNode->AddMaterial(lMaterial);
+        if(mat->tex!=_T(""))CreateDiffuseUVTexture(pScene, mat, lMaterial);
       }
       break;
     }
     return S_OK;
   }
+  FbxNode* SetupSkeletonAttr(FbxScene* pScene, LPCSTR name, double rtX, double rtY, double rtZ, bool Size1 = false)
+  {
+    FbxSkeleton* lSkeletonAttribute = FbxSkeleton::Create(pScene, name);
+    lSkeletonAttribute->SetSkeletonType(FbxSkeleton::eLimbNode);
+    if(Size1)lSkeletonAttribute->Size.Set(1.0);
+    FbxNode* lSkeleton = FbxNode::Create(pScene, name);
+    lSkeleton->SetNodeAttribute(lSkeletonAttribute);    
+    lSkeleton->LclTranslation.Set(FbxDouble3(rtX, rtY, rtZ));
+    return lSkeleton;
+  }
+  
   HRESULT CreateSkelton(FbxManager *pSdkManager, FbxScene* pScene, CMYMQO *mqo)
   {
     FbxSkeleton* lSkeletonAttribute = FbxSkeleton::Create(pScene, CW2A(CString(L"SkeltonRoot"), CP_UTF8));
@@ -460,32 +505,33 @@ HRESULT LoadFromFile(LPCTSTR path)
     {
       CMYBone &bone = mqo->m_bones[i];
       if(bone.parent)continue;
-      FbxSkeleton* lSkeletonAttribute2 = FbxSkeleton::Create(pScene, CW2A(CString(L"Skelton")+bone.name, CP_UTF8));
-      lSkeletonAttribute2->SetSkeletonType(FbxSkeleton::eLimbNode);
-      FbxNode* lSkeleton2 = FbxNode::Create(pScene, CW2A(CString(L"Skelton")+bone.name, CP_UTF8));
-      lSkeleton2->SetNodeAttribute(lSkeletonAttribute2);    
-      lSkeleton2->LclTranslation.Set(FbxDouble3(bone.rtX, bone.rtY, bone.rtZ));
-      bone.fbxNode = lSkeleton2;
-      __CreateChildSkelton(pSdkManager, pScene, mqo, bone, lSkeleton2);
-      lSkeleton->AddChild(lSkeleton2);
+      if(bone.isDummy)
+      {
+        __CreateChildSkelton(pSdkManager, pScene, mqo, bone, 0,0,0, lSkeleton);
+      } else {
+        FbxNode* lSkeleton2 = SetupSkeletonAttr(pScene, CW2A(/*CString(L"Skelton")+*/bone.name, CP_UTF8), bone.rtX, bone.rtY, bone.rtZ);
+        bone.fbxNode = lSkeleton2;
+        __CreateChildSkelton(pSdkManager, pScene, mqo, bone, bone.rtX, bone.rtY, bone.rtZ, lSkeleton2);
+        lSkeleton->AddChild(lSkeleton2);
+      }
     }
     return S_OK;
   }
-  HRESULT __CreateChildSkelton(FbxManager *pSdkManager, FbxScene* pScene, CMYMQO *mqo, CMYBone &parentBone, FbxNode* lParentSkeleton)
+  HRESULT __CreateChildSkelton(FbxManager *pSdkManager, FbxScene* pScene, CMYMQO *mqo, CMYBone &parentBone, double parent_rtX, double parent_rtY, double parent_rtZ, FbxNode* lParentSkeleton)
   {
     int m = parentBone.childs.GetCount();
     for(int i=0;i<m;i++)
     {
       CMYBone* child = parentBone.childs[i];
-      FbxSkeleton* lSkeletonAttribute = FbxSkeleton::Create(pScene, CW2A(CString(L"Skelton")+child->name, CP_UTF8));
-      lSkeletonAttribute->SetSkeletonType(FbxSkeleton::eLimbNode);
-      lSkeletonAttribute->Size.Set(1.0);
-      FbxNode* lSkeleton = FbxNode::Create(pScene, CW2A(CString(L"Skelton")+child->name, CP_UTF8));
-      lSkeleton->SetNodeAttribute(lSkeletonAttribute);    
-      lSkeleton->LclTranslation.Set(FbxDouble3(child->rtX - parentBone.rtX, child->rtY - parentBone.rtY, child->rtZ - parentBone.rtZ));
-      child->fbxNode = lSkeleton;
-      __CreateChildSkelton(pSdkManager, pScene, mqo, *child, lSkeleton);
-      lParentSkeleton->AddChild(lSkeleton);
+      if(child->isDummy)
+      {
+        __CreateChildSkelton(pSdkManager, pScene, mqo, *child, parentBone.rtX, parentBone.rtY, parentBone.rtZ, lParentSkeleton);
+      } else {
+        FbxNode* lSkeleton = SetupSkeletonAttr(pScene, CW2A(/*CString(L"Skelton")+*/child->name, CP_UTF8), child->rtX - parent_rtX, child->rtY - parent_rtY, child->rtZ - parent_rtZ, true);
+        child->fbxNode = lSkeleton;
+        __CreateChildSkelton(pSdkManager, pScene, mqo, *child, child->rtX, child->rtY, child->rtZ, lSkeleton);
+        lParentSkeleton->AddChild(lSkeleton);
+      }
     }
     return S_OK;
   }
@@ -496,13 +542,13 @@ HRESULT LoadFromFile(LPCTSTR path)
 
     {
       CAtlArray<CMYVertex*> *vertex = obj->vertex;
-      int vm = vertex->GetCount();
+      size_t vm = vertex->GetCount();
       if(vm==0)return E_FAIL;
 
       lMesh->InitControlPoints(vm);
       FbxVector4* lControlPoints = lMesh->GetControlPoints();
 
-      for(int i=0;i<vm;i++)
+      for(size_t i=0;i<vm;i++)
       {
         CMYVertex *v = (*vertex)[i];
         lControlPoints[i] = FbxVector4(v->x, v->y, v->z);
@@ -520,10 +566,10 @@ HRESULT LoadFromFile(LPCTSTR path)
     {
       if(obj->face==NULL)return E_FAIL;
       CAtlArray<CMYFace*> *faces = obj->face;
-      int fm = faces->GetCount();
+      size_t fm = faces->GetCount();
       if(fm==0)return E_FAIL;
 
-      for(int i=0;i<fm;i++)
+      for(size_t i=0;i<fm;i++)
       {
         CMYFace *f = (*faces)[i];
         lMesh->BeginPolygon(f->M);
@@ -604,7 +650,8 @@ HRESULT LoadFromFile(LPCTSTR path)
       {
         size_t oi = bone.oi[j];
         int objIndex = _SearchObjIndex(mqo->m_objects, oi);
-        ATLASSERT(objIndex>=1);
+        if(objIndex<=0)continue;
+        //ATLASSERT(objIndex>=1);
         CMYObject *curObj = mqo->m_objects[objIndex-1];
         FbxSkin *pSkin = skins[objIndex];
         if(pSkin==NULL)
@@ -639,7 +686,7 @@ HRESULT LoadFromFile(LPCTSTR path)
           pCluster->SetTransformMatrix(lXMatrix);
 
           FbxNode *pBoneNode = bone.fbxNode;
-          if(lScene)
+          if(lScene && pBoneNode!=NULL)
             lXMatrix = pBoneNode->EvaluateGlobalTransform();
           pCluster->SetTransformLinkMatrix(lXMatrix);
 
